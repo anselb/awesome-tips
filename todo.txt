@@ -1,0 +1,23 @@
+TODO MILESTONES
+
+Complete by Wednesday 11/1
+    Routes
+    bootstrap
+    Map w/ Location
+    User Auth
+
+
+Complete by Friday 11/3
+    Login and signup page
+    Reivew System with CRUD 
+    user settings and profile
+
+Complete by Wednesday 11/8
+    Search/filter
+    Get Location
+    Voting System
+
+Complete by Friday 11/10
+    Reputation System
+    CSS Tweaks
+    Comment System
