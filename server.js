@@ -35,6 +35,8 @@ app.get('/', function (req, res) {
     res.render('index')
 });
 
+// routes for tips
+require('./controllers/tips')(app);
 
 //Routes For User Auth
 app.post('/register', passport.authenticate('local-signup', {
