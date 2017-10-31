@@ -1,13 +1,9 @@
-doctype html
-html(lang="en")
-    head
-        title Awesome Tips
-        link(rel='stylesheet' href='style.css')
-    body
-        div(id="map")
-        block content
-
-
+extends layout
+block head
+    link(rel='stylesheet' href='style.css')
+block body
+    div(id="map")
+    block content
     script(src='markerclusterer.js')
     script(src='js-map.js')
     script(src='https://maps.googleapis.com/maps/api/js?key=AIzaSyAaGNPA1AHCW0seaqLolurw0WDxDBccbco&callback=initMap')
