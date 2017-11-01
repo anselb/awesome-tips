@@ -8,6 +8,8 @@ html(lang="en")
         // Custom CSS 
         link(rel="stylesheet", href='layout.css' type="text/css")
         link(rel="stylesheet", href='https://cdnjs.cloudflare.com/ajax/libs/flexboxgrid/6.3.1/flexboxgrid.min.css' type="text/css")
+        // Custom Scripts
+        script(src='./scripts/layout.js')
         title Awesome Tips
         block head
     body
@@ -18,12 +20,10 @@ html(lang="en")
                 if (!currentUser) 
                     ul.nav.navbar-nav.navbar-right
                         form#userAuthForm
-                          input(type="text" name="username" placeholder="Username")
-                          input(type="password" name="password" placeholder="Password")
-                        li
-                            a(href='/login') Login
-                        li
-                            a(href='/register') Sign Up
+                          input#username(type="text" name="username" placeholder="Username")
+                          input#password(type="password" name="password" placeholder="Password")
+                          p#login Login
+                          p#signUp Sign Up
                 else
                     ul.nav.navbar-nav.navbar-right
                         li
