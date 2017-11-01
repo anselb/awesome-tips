@@ -9,7 +9,7 @@ module.exports = function (app, passport) {
           failureRedirect : '/', // redirect back to the signup page if there is an error
   }));
 
-  app.post('/logout' , function(req,res){
+  app.get('/logout' , function(req,res){
       req.logout();
       res.redirect('/');
   });

@@ -30,6 +30,22 @@ app.use(passport.session()); // persistent login sessions
 app.use(flash());
 app.use(express.static('./public')); // set directory for static files
 
+app.set('views', './views'); // set express view template directory for express
+app.set('view engine' , 'jade'); // set express view engine to use jade
+
+app.get('/', function (req, res) {
+    req.flash('info', 'Welcome');
+    res.render('index', {currentUser : req.user, infoFlash : req.flash('info')})
+});
+
+// required for passport
+require('./controllers/passport')(passport);
+//Routes for authentication
+require('./controllers/auth')(app, passport);
+// Routes for Tips
+require('./controllers/tips')(app);
+
+
 // Error handling
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
@@ -45,23 +61,6 @@ app.use(function(err, req, res, next) {
     res.redirect('/500.html');
   }
 });
-
-
-
-app.set('views', './views'); // set express view template directory for express
-app.set('view engine' , 'jade'); // set express view engine to use jade
-
-app.get('/', function (req, res) {
-    req.flash('info', 'Welcome');
-    res.render('index', {currentUser : req.user, infoFlash : req.flash('info')})
-});
-
-// required for passport
-require('./controllers/passport')(passport);
-//Routes for authentication
-require('./controllers/auth')(app, passport);
-// Routes for Tips
-require('./controllers/tips')(app);
 
 app.listen(port, function () {
     console.log('Awesome tips listening on port 3000!')
