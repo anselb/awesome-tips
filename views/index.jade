@@ -5,6 +5,15 @@ block body
     #wrapper
         div(id="map")
         #tips
+          .container-fluid
+            .row
+              .col-xs-12
+                br
+                form(action="/tips" method="POST")
+                  .form-group
+                    textarea.form-control
+                  .text-right
+                    button.btn.btn-primary(type="Submit") Save Tip
     block content
     script(src='markerclusterer.js')
     script(src='js-map.js')

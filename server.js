@@ -4,6 +4,9 @@ var port = process.env.PORT || 3000;
 var mongoose = require('mongoose');
 var passport = require('passport');
 var session = require('express-session');
+var flash = require('connect-flash');
+var bodyParser = require('body-parser');
+var cookieParser = require('cookie-parser');
 
 var maps = require('@google/maps').createClient({
     key: process.env.MAP_API_KEY
@@ -18,51 +21,46 @@ mongoose.connect(process.env.MONGO_URL, function(err){
     console.log('Connected to Tips database.');
 });
 
-// required for passport
-require('./controllers/passport')(passport);
-
 // create .env file if not present, assign a value to SESSION_SECRET
+app.use(cookieParser()); // read cookies (needed for auth)
+app.use(bodyParser()); // get information from html forms
 app.use(session({secret: process.env.SESSION_SECRET})); // session secret
 app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
+app.use(flash());
 app.use(express.static('./public')); // set directory for static files
-
 
 app.set('views', './views'); // set express view template directory for express
 app.set('view engine' , 'jade'); // set express view engine to use jade
 
 app.get('/', function (req, res) {
-    res.render('index')
+    req.flash('info', 'Welcome');
+    res.render('index', {currentUser : req.user, infoFlash : req.flash('info')})
 });
 
-// routes for tips
+// required for passport
+require('./controllers/passport')(passport);
+//Routes for authentication
+require('./controllers/auth')(app, passport);
+// Routes for Tips
 require('./controllers/tips')(app);
 
-//Routes For User Auth
-app.post('/register', passport.authenticate('local-signup', {
-        successRedirect : '/', // redirect to the secure profile section
-        failureRedirect : '/', // redirect back to the signup page if there is an error
-        failureFlash : true // allow flash messages
-}));
 
-app.post('/login', passport.authenticate('local-login', {
-        successRedirect : '/', // redirect to the secure profile section
-        failureRedirect : '/', // redirect back to the signup page if there is an error
-        failureFlash : true // allow flash messages
-}));
-
-app.post('/logout' , function(req,res){
-    req.logout();
-    res.redirect('/');
+// Error handling
+app.use(function(req, res, next) {
+  var err = new Error('Not Found');
+  err.status = 404;
+  next(err);
 });
 
-function isLoggedIn(req, res, next) {
-    // if user is authenticated in the session, carry on
-    if (req.isAuthenticated())
-        return next();
-    // if they aren't redirect them to the home page
-    res.redirect('/');
-}
+app.use(function(err, req, res, next) {
+  if(err.status == 404) {
+  //do logging and user-friendly error message display
+    res.redirect('/404.html');
+  } else if (err.status == 500) {
+    res.redirect('/500.html');
+  }
+});
 
 app.listen(port, function () {
     console.log('Awesome tips listening on port 3000!')
