@@ -5,6 +5,9 @@ html(lang="en")
         // Latest compiled and minified JavaScript
         script(src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js', integrity='sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa', crossorigin='anonymous')
         script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js')
+        // Custom CSS 
+        link(rel="stylesheet", href='layout.css' type="text/css")
+        link(rel="stylesheet", href='https://cdnjs.cloudflare.com/ajax/libs/flexboxgrid/6.3.1/flexboxgrid.min.css' type="text/css")
         title Awesome Tips
         block head
     body
@@ -14,10 +17,13 @@ html(lang="en")
                     a(href="/").navbar-brand Awesome Tips
                 if (!currentUser) 
                     ul.nav.navbar-nav.navbar-right
+                        form#userAuthForm
+                          input(type="text" name="username" placeholder="Username")
+                          input(type="password" name="password" placeholder="Password")
                         li
                             a(href='/login') Login
                         li
-                            a(href='/sign-up') Sign Up
+                            a(href='/register') Sign Up
                 else
                     ul.nav.navbar-nav.navbar-right
                         li

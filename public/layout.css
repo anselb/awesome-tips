@@ -1,0 +1,15 @@
+form {
+  display : inline;
+}
+
+#userAuthForm{
+  margin-bottom: 0px;
+}
+
+.nav.navbar-nav.navbar-right{
+  display : flex;
+  flex-direction: row;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+}
