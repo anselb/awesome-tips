@@ -4,7 +4,8 @@
   "description": "## Introduction Awesome Tips is a program that allows users to easily create tips and reviews for the places around them. View tips created by you and other users on a map of your surroundings or scroll through a feed of tips that others have created for the areas that interest you.",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js"
   },
   "repository": {
     "type": "git",
@@ -26,5 +27,8 @@
     "mongoose": "^4.12.5",
     "passport": "^0.4.0",
     "passport-local": "^1.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.12.1"
   }
 }
