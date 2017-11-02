@@ -1,57 +1,51 @@
 var express = require('express');
 var app = express();
-var port = process.env.PORT || 3000;
-var mongoose = require('mongoose');
+// var port = process.env.PORT || 3000;
 var passport = require('passport');
 var session = require('express-session');
 var flash = require('connect-flash');
 var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
+require('dotenv').config();
+
 
 var maps = require('@google/maps').createClient({
     key: process.env.MAP_API_KEY
 });  // use library for Location & Places https://github.com/googlemaps/google-maps-services-js
 
-require('dotenv').config();
 
-// Connect to MongoDb Database
-// create .env file if not present, assign a mongodb connection string to MONGO_URL to connect to local DB
-mongoose.connect(process.env.MONGO_URL, function(err){
-    if(err) throw err;
-    console.log('Connected to Tips database.');
-});
-
-// create .env file if not present, assign a value to SESSION_SECRET
-app.use(cookieParser()); // read cookies (needed for auth)
-app.use(bodyParser()); // get information from html forms
+// create .env file in root direct if not present, assign a value to SESSION_SECRET=SOMESTRING
+app.use(cookieParser());                // read cookies (needed for auth)
+app.use(bodyParser());                  // get information from html forms
 app.use(session({secret: process.env.SESSION_SECRET})); // session secret
 app.use(passport.initialize());
-app.use(passport.session()); // persistent login sessions
+app.use(passport.session());            // persistent login sessions
 app.use(flash());
-app.use(express.static('./public')); // set directory for static files
+app.use(express.static('./public'));    // set directory for static files
 
-app.set('views', './views'); // set express view template directory for express
-app.set('view engine' , 'jade'); // set express view engine to use jade
+app.set('views', './views');            // set express view template directory for express
+app.set('view engine' , 'jade');        // set express view engine to use jade
 
 app.get('/', function (req, res) {
+    console.log('In root route');
     req.flash('info', 'Welcome');
     res.render('index', {currentUser : req.user, infoFlash : req.flash('info')})
 });
 
-// required for passport
-require('./controllers/passport')(passport);
-//Routes for authentication
-require('./controllers/auth')(app, passport);
-// Routes for Tips
-require('./controllers/tips')(app);
+
+// ROUTES
+require('./controllers/passport')(passport);            // required for passport
+require('./controllers/auth')(app, passport);           //  Routes for authentication
+require('./controllers/tips')(app);                     // Routes for Tips
 
 
-// Error handling
+// ERROR HANDLING
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
   err.status = 404;
   next(err);
 });
+
 
 app.use(function(err, req, res, next) {
   if(err.status == 404) {
@@ -62,6 +56,10 @@ app.use(function(err, req, res, next) {
   }
 });
 
-app.listen(port, function () {
-    console.log('Awesome tips listening on port 3000!')
-});
+// EXPORT MODULE, USE BIN/WWW - SAME AS EXPRESS-GENERATOR
+// NOT SURE IT MAKES ANY DIFFERENCE
+module.exports = app;
+
+// app.listen(port, function () {
+//     console.log('Awesome tips listening on port 3000!')
+// });

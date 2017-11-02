@@ -11,7 +11,7 @@ block body
                 br
                 form(action="/tips" method="POST")
                   .form-group
-                    textarea.form-control
+                    textarea.form-control(name="body")
                   .text-right
                     button.btn.btn-primary(type="Submit") Save Tip
     block content

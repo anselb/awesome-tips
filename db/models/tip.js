@@ -1,9 +1,19 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
+
   var Tip = sequelize.define('Tip', {
-    body: DataTypes.TEXT,
-    longitude: DataTypes.FLOAT,
-    latitude: DataTypes.FLOAT
+    body: {
+        type: DataTypes.TEXT
+    },
+    longitude: {
+        type: DataTypes.FLOAT,
+        defaultValue: 0.00
+    },
+    latitude: {
+        type: DataTypes.FLOAT,
+        defaultValue: 0.00
+    },
+
   }, {
     classMethods: {
       associate: function(models) {
