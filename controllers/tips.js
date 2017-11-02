@@ -1,4 +1,4 @@
-const Tip = require('../models/tip');
+const Tip = require('../db/models/tip');
 
 module.exports = function (app) {
     //GET new tip form
@@ -30,7 +30,7 @@ module.exports = function (app) {
 
     //PUT edit tips
     app.put('/tips/:id', function (req, res) {
-        console.log(req.body)
+        console.log(req.body);
         Tip.findByIdAndUpdate(req.params.id, req.body, function (err, tip) {
             res.redirect('/tips/' + tip._id)
         })
