@@ -14,6 +14,9 @@ block body
                     textarea.form-control(name="body")
                   .text-right
                     button.btn.btn-primary(type="Submit") Save Tip
+                div
+                    for tip in tips
+                        p #{tip.body}
     block content
     script(src='markerclusterer.js')
     script(src='js-map.js')
