@@ -28,15 +28,10 @@ app.set('views', './views');            // set express view template directory f
 app.set('view engine' , 'jade');        // set express view engine to use jade
 
 app.get('/', function (req, res) {
-    req.flash('info', 'Welcome');
-<<<<<<< HEAD
-    console.log(req.user);
-    res.render('index', {currentUser : req.user, infoFlash : req.flash('info')})
-=======
-    models.Tip.findAll().then((tips) => {
-        res.render('index', {currentUser : req.user, infoFlash : req.flash('info'), tips: tips})
-    })
->>>>>>> 5f3eeea5edb6947c181c5d22ebb179e62ecde16d
+  req.flash('info', 'Welcome');
+  models.Tip.findAll().then((tips) => {
+      res.render('index', {currentUser : req.user, infoFlash : req.flash('info'), tips: tips})
+  })
 });
 
 

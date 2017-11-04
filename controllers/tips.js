@@ -29,9 +29,11 @@ module.exports = function (app) {
     app.post('/tips', function (req, res) {
 
         TipModel.create(req.body).then( (tip) => {
-            // console.log(tip); // returns the tip data from DB
-            res.redirect('/')
-        })
+            tip.owner = req.user.username;
+            tip.save({}).then( () => {
+              res.redirect('/')
+            });
+        });
     });
 
     //PUT edit tips
