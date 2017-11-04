@@ -8,6 +8,7 @@ var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
 require('dotenv').config();
 
+var models = require('./db/models');
 
 var maps = require('@google/maps').createClient({
     key: process.env.MAP_API_KEY
@@ -28,8 +29,14 @@ app.set('view engine' , 'jade');        // set express view engine to use jade
 
 app.get('/', function (req, res) {
     req.flash('info', 'Welcome');
+<<<<<<< HEAD
     console.log(req.user);
     res.render('index', {currentUser : req.user, infoFlash : req.flash('info')})
+=======
+    models.Tip.findAll().then((tips) => {
+        res.render('index', {currentUser : req.user, infoFlash : req.flash('info'), tips: tips})
+    })
+>>>>>>> 5f3eeea5edb6947c181c5d22ebb179e62ecde16d
 });
 
 
