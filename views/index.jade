@@ -7,13 +7,25 @@ block body
         #tips
           .container-fluid
             .row
-              .col-xs-12
-                br
-                form(action="/tips" method="POST")
-                  .form-group
-                    textarea.form-control(name="body")
-                  .text-right
-                    button.btn.btn-primary(type="Submit") Save Tip
+                if (currentUser)
+                  .col-xs-12
+                      hr
+                      form(method="POST" action='/tips')
+                          legend New Tip
+                          .form-group
+                              label(for='tip-body') Tip
+                              textarea#post-summary.form-control(name='body', placeholder="What's your tip?")
+                          .form-group
+                              label(for='tip-location') Location
+                              input#post-subreddit.form-control(name='location', placeholder='Tip about where?')
+                          .text-right
+                              button.btn.btn-primary(type='submit') Submit Tip
+                div
+                    h2 Tips
+                    br
+                    for tip in tips
+                        p=tip.body
+                        p=tip.owner
     block content
     script(src='markerclusterer.js')
     script(src='js-map.js')

@@ -13,6 +13,9 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.FLOAT,
         defaultValue: 0.00
     },
+    owner: {
+        type: DataTypes.STRING
+    },
 
   }, {
     classMethods: {

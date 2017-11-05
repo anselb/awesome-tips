@@ -9,6 +9,7 @@ module.exports = function (app) {
 
     //GET individual tips
     app.get('/tips/:id', function (req, res) {
+        console.log("ID IS "+req.params.id)
         TipModel.findById(req.params.id).then((tip) => {
             res.render('tips-show', { tip: tip })
         })
@@ -28,9 +29,11 @@ module.exports = function (app) {
     app.post('/tips', function (req, res) {
 
         TipModel.create(req.body).then( (tip) => {
-            // console.log(tip); // returns the tip data from DB
-            res.redirect('/')
-        })
+            tip.owner = req.user.username;
+            tip.save({}).then( () => {
+              res.redirect('/')
+            });
+        });
     });
 
     //PUT edit tips
