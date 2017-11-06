@@ -1,4 +1,9 @@
 
+function getTipMarkers(cb){
+  $.get('/tips', function(data){
+    cb(data);
+  });
+}
 
 function initMap() {
 
@@ -24,6 +29,7 @@ function initMap() {
             };
             infoWindow.open(map);
             map.setCenter(pos);
+            map.setZoom(15);
         }, function() {
             handleLocationError(true, infoWindow, map.getCenter());
         });
@@ -43,25 +49,28 @@ function initMap() {
     // END GEO LOCATION
 
     // FOR MARKERS START
-    var locations = [
+    getTipMarkers(function(tips){
+      // Add some markers to the map.
+      // Note: The code uses the JavaScript Array.prototype.map() method to
+      // create an array of markers based on a given "locations" array.
+      // The map() method here has nothing to do with the Google Maps API.
+      var markers = tips.map(function(tip, i) {
+          return new google.maps.Marker({
+              position: {lat : tip.latitude, lng : tip.longitude},
+              label: labels[i % labels.length]
+          });
+      });
 
-    ];
+      // Add a marker clusterer to manage the markers.
+      var markerCluster = new MarkerClusterer(map, markers,
+          {imagePath: './m'});
 
-    // Add some markers to the map.
-    // Note: The code uses the JavaScript Array.prototype.map() method to
-    // create an array of markers based on a given "locations" array.
-    // The map() method here has nothing to do with the Google Maps API.
-    var markers = locations.map(function(location, i) {
-        return new google.maps.Marker({
-            position: location,
-            label: labels[i % labels.length]
-        });
+      // FOR MARKERS END
     });
 
-    // Add a marker clusterer to manage the markers.
-    var markerCluster = new MarkerClusterer(map, markers,
-        {imagePath: './m'});
 
-    // FOR MARKERS END
+
+
+
 
 }

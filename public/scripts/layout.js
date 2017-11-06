@@ -1,4 +1,5 @@
 $(document).ready(function(){
+
   $('#signUp').click(function(){
       $.post('/sign-up', {username : $('#username').val() , password : $('#password').val()}, function(){
           location.reload();
@@ -23,8 +24,8 @@ $(document).ready(function(){
     navigator.geolocation.getCurrentPosition(function(position) {
       lat = position.coords.latitude;
       lng = position.coords.longitude;
-      console.log(position);
       $.post('/tips', {tipContent : $('#tip-content').val(), tipLat : lat, tipLng : lng}, function(){
+        location.reload();
       });
     })
   })
