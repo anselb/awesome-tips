@@ -1,6 +1,6 @@
 var express = require('express');
 var app = express();
-// var port = process.env.PORT || 3000;
+//var port = process.env.PORT || 3000;
 var passport = require('passport');
 var session = require('express-session');
 var flash = require('connect-flash');
@@ -30,11 +30,10 @@ app.set('views', './views');            // set express view template directory f
 app.set('view engine' , 'jade');        // set express view engine to use jade
 
 app.get('/', function (req, res) {
-    console.log('In root route');
-    req.flash('info', 'Welcome');
-    models.Tip.findAll().then((tips) => {
-        res.render('index', {currentUser : req.user, infoFlash : req.flash('info'), tips: tips})
-    })
+  req.flash('info', 'Welcome');
+  models.Tip.findAll().then((tips) => {
+      res.render('index', {currentUser : req.user, infoFlash : req.flash('info'), tips: tips})
+  })
 });
 
 
@@ -65,6 +64,6 @@ app.use(function(err, req, res, next) {
 // NOT SURE IT MAKES ANY DIFFERENCE
 module.exports = app;
 
-// app.listen(port, function () {
+// app.listen(3000, function () {
 //     console.log('Awesome tips listening on port 3000!')
 // });
