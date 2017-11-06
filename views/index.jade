@@ -26,6 +26,9 @@ block body
                     for tip in tips
                         p=tip.body
                         p=tip.owner
+                        form(action="/tips/#{tip.id}?_method=DELETE" method="POST" )
+                            .text-right
+                              button.btn.btn-primary(type="Submit") Delete
     block content
     script(src='markerclusterer.js')
     script(src='js-map.js')
