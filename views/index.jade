@@ -3,7 +3,7 @@ block head
     link(rel='stylesheet' href='style.css')
 block body
     #wrapper
-        div(id="map")
+        div(id="map").hidden-sm
         #tips
           .container-fluid
             .row
@@ -20,7 +20,7 @@ block body
                               input#post-subreddit.form-control(name='location', placeholder='Tip about where?')
                           .text-right
                               button.btn.btn-primary(type='submit') Submit Tip
-                div
+                div.tipbox
                     h2 Tips
                     br
                     for tip in tips
