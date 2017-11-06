@@ -9,7 +9,6 @@ module.exports = function (app) {
 
     //GET individual tips
     app.get('/tips/:id', function (req, res) {
-        console.log("ID IS "+req.params.id)
         TipModel.findById(req.params.id).then((tip) => {
             res.render('tips-show', { tip: tip })
         })
@@ -23,12 +22,18 @@ module.exports = function (app) {
         })
     }); 
 
+    //GET all the tips
+    app.get('/tips', function(req,res) {
+      TipModel.findAll({}).then((tips) => {
+        res.send(tips);
+      })
+    })
 
     // SUCCESSFULLY POSTS TO DB // (DONE 11/01)
     //POST create new tips
     app.post('/tips', function (req, res) {
-
-        TipModel.create(req.body).then( (tip) => {
+        console.log(req.body.lng);
+        TipModel.create({body : req.body.tipContent, longitude : req.body.tipLng, latitude : req.body.tipLat}).then( (tip) => {
             tip.owner = req.user.username;
             tip.save({}).then( () => {
               res.redirect('/')
@@ -51,4 +56,5 @@ module.exports = function (app) {
             res.redirect('/')
         })
     })
+
 };

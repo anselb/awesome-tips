@@ -9,17 +9,12 @@ block body
             .row
                 if (currentUser)
                   .col-xs-12
-                      hr
-                      form(method="POST" action='/tips')
-                          legend New Tip
-                          .form-group
-                              label(for='tip-body') Tip
-                              textarea#post-summary.form-control(name='body', placeholder="What's your tip?")
-                          .form-group
-                              label(for='tip-location') Location
-                              input#post-subreddit.form-control(name='location', placeholder='Tip about where?')
-                          .text-right
-                              button.btn.btn-primary(type='submit') Submit Tip
+                        legend New Tip
+                        .form-group
+                            label(for='tip-body') Tip
+                            textarea#tip-content.form-control(name='body', placeholder="What's your tip?")
+                        .text-right
+                            button#tip-submit.btn.btn-primary Submit Tip
                 div
                     h2 Tips
                     br
