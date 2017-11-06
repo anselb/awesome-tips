@@ -55,15 +55,24 @@ function initMap() {
       // create an array of markers based on a given "locations" array.
       // The map() method here has nothing to do with the Google Maps API.
       var markers = tips.map(function(tip, i) {
-          return new google.maps.Marker({
+          var marker = new google.maps.Marker({
               position: {lat : tip.latitude, lng : tip.longitude},
-              label: labels[i % labels.length]
+              label: labels[i % labels.length],
           });
+          var infowindow = new google.maps.InfoWindow({
+            content: tip.body
+          });
+          marker.addListener('click', function() {
+            infowindow.open(map, marker);
+          });
+          return marker;
       });
 
       // Add a marker clusterer to manage the markers.
       var markerCluster = new MarkerClusterer(map, markers,
           {imagePath: './m'});
+
+
 
       // FOR MARKERS END
     });

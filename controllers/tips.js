@@ -9,7 +9,6 @@ module.exports = function (app) {
 
     //GET individual tips
     app.get('/tips/:id', function (req, res) {
-        console.log("ID IS "+req.params.id)
         TipModel.findById(req.params.id).then((tip) => {
             res.render('tips-show', { tip: tip })
         })
@@ -26,7 +25,6 @@ module.exports = function (app) {
     //GET all the tips
     app.get('/tips', function(req,res) {
       TipModel.findAll({}).then((tips) => {
-        console.log(tips);
         res.send(tips);
       })
     })
