@@ -16,4 +16,17 @@ $(document).ready(function(){
           location.reload();
       });
   });
+
+  $('#tip-submit').click(function(){
+    var lat = 0;
+    var lng = 0;
+    navigator.geolocation.getCurrentPosition(function(position) {
+      lat = position.coords.latitude;
+      lng = position.coords.longitude;
+      console.log(position);
+      $.post('/tips', {tipContent : $('#tip-content').val(), tipLat : lat, tipLng : lng}, function(){
+      });
+    })
+  })
+
 });

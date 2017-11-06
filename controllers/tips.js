@@ -27,7 +27,7 @@ module.exports = function (app) {
     // SUCCESSFULLY POSTS TO DB // (DONE 11/01)
     //POST create new tips
     app.post('/tips', function (req, res) {
-
+        console.log(req.tipContent);
         TipModel.create(req.body).then( (tip) => {
             tip.owner = req.user.username;
             tip.save({}).then( () => {
