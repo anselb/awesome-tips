@@ -6,6 +6,7 @@ var session = require('express-session');
 var flash = require('connect-flash');
 var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
+var methodOverride = require('method-override')
 require('dotenv').config();
 
 var models = require('./db/models');
@@ -18,6 +19,7 @@ var maps = require('@google/maps').createClient({
 // create .env file in root direct if not present, assign a value to SESSION_SECRET=SOMESTRING
 app.use(cookieParser());                // read cookies (needed for auth)
 app.use(bodyParser());                  // get information from html forms
+app.use(methodOverride('_method'))
 app.use(session({secret: process.env.SESSION_SECRET})); // session secret
 app.use(passport.initialize());
 app.use(passport.session());            // persistent login sessions
