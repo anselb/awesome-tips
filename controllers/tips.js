@@ -21,7 +21,7 @@ module.exports = function (app) {
         TipModel.findById(req.params.id).then((tip) => {
             res.render('tips-edit', { tip: tip })
         })
-    });
+    }); 
 
 
     // SUCCESSFULLY POSTS TO DB // (DONE 11/01)
