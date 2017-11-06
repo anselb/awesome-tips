@@ -39,10 +39,12 @@ body{
     #tips{
         width: 100%;
     }
-    .tipbox{
-        width: 100%;
-    }
+
 }
 .navbar{
+    width: 100%;
+}
+
+.tipbox{
     width: 100%;
 }
