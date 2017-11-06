@@ -3,7 +3,7 @@ block head
     link(rel='stylesheet' href='style.css')
 block body
     #wrapper
-        div(id="map")
+        div(id="map").hidden-sm
         #tips
           .container-fluid
             .row
@@ -15,7 +15,8 @@ block body
                             textarea#tip-content.form-control(name='body', placeholder="What's your tip?")
                         .text-right
                             button#tip-submit.btn.btn-primary Submit Tip
-                div
+                div.tipbox
+
                     h2 Tips
                     br
                     for tip in tips

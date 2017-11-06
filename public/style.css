@@ -19,6 +19,7 @@ body{
 }
 
 #tips{
+    overflow-y: scroll;
     width:30%;
     height: 90%;
     background-color: #efefef;
@@ -34,7 +35,14 @@ body{
     float: left;
     height: 90%;
 }
-
+@media (max-width: 990px){
+    #tips{
+        width: 100%;
+    }
+    .tipbox{
+        width: 100%;
+    }
+}
 .navbar{
     width: 100%;
 }
