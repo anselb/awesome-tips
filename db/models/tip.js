@@ -1,0 +1,29 @@
+'use strict';
+module.exports = (sequelize, DataTypes) => {
+
+    var Tip = sequelize.define('Tip', {
+        body: {
+            type: DataTypes.TEXT
+        },
+        longitude: {
+            type: DataTypes.FLOAT
+        },
+        latitude: {
+            type: DataTypes.FLOAT
+        },
+        vote: {
+            type: DataTypes.INTEGER
+        }
+    }, {
+        classMethods: {
+            associate: function (models) {
+                Tip.belongsTo(models.User, {
+                    key: 'id',
+                    onDelete: 'cascade',
+                    onUpdate: 'cascade'
+                });
+            }
+        }
+    });
+    return Tip;
+};

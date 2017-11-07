@@ -2,7 +2,33 @@ extends layout
 block head
     link(rel='stylesheet' href='style.css')
 block body
-    div(id="map")
+    #wrapper
+        div(id="map").hidden-sm
+        #tips
+          .container-fluid
+            .row
+                if (currentUser)
+                  .col-xs-12
+                        legend New Tip
+                        .form-group
+                            label(for='tip-body') Tip
+                            textarea#tip-content.form-control(name='body', placeholder="What's your tip?")
+                        .text-right
+                            button#tip-submit.btn.btn-primary Submit Tip
+                div.tipbox
+
+                    h2 Tips
+                    br
+                    for tip in tips
+                        p
+                            small  <em>#{tip.createdAt}</em>
+                        p
+                            | #{tip.body}
+                            | by: #{tip.owner}
+                        //p=tip.owner
+                        form(action="/tips/#{tip.id}?_method=DELETE" method="POST" )
+                            .text-right
+                              button.btn.btn-primary(type="Submit") Delete
     block content
     script(src='markerclusterer.js')
     script(src='js-map.js')
