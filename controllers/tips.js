@@ -27,14 +27,19 @@ module.exports = function (app) {
       TipModel.findAll({}).then((tips) => {
         res.send(tips);
       })
-    })
+    });
 
     // SUCCESSFULLY POSTS TO DB // (DONE 11/01)
     //POST create new tips
     app.post('/tips', function (req, res) {
         console.log(req.body.lng);
-        TipModel.create({body : req.body.tipContent, longitude : req.body.tipLng, latitude : req.body.tipLat}).then( (tip) => {
-            tip.owner = req.user.username;
+        TipModel.create({
+            body : req.body.tipContent,
+            longitude : req.body.tipLng,
+            latitude : req.body.tipLat,
+            owner: req.user.username
+        }).then( (tip) => {
+            // tip.owner = req.user.username;
             tip.save({}).then( () => {
               res.redirect('/')
             });
