@@ -1,4 +1,4 @@
-const TipModel = require('../db/models').Tip;
+const TipModel = require('../db/models/index').Tip;
 
 
 module.exports = function (app) {
