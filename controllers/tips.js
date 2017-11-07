@@ -20,17 +20,25 @@ module.exports = function (app) {
         TipModel.findById(req.params.id).then((tip) => {
             res.render('tips-edit', { tip: tip })
         })
-    });
+    }); 
 
+    //GET all the tips
+    app.get('/tips', function(req,res) {
+      TipModel.findAll({}).then((tips) => {
+        res.send(tips);
+      })
+    })
 
     // SUCCESSFULLY POSTS TO DB // (DONE 11/01)
     //POST create new tips
     app.post('/tips', function (req, res) {
-
-        TipModel.create(req.body).then( (tip) => {
-            // console.log(tip); // returns the tip data from DB
-            res.redirect('/')
-        })
+        console.log(req.body.lng);
+        TipModel.create({body : req.body.tipContent, longitude : req.body.tipLng, latitude : req.body.tipLat}).then( (tip) => {
+            tip.owner = req.user.username;
+            tip.save({}).then( () => {
+              res.redirect('/')
+            });
+        });
     });
 
     //PUT edit tips
@@ -43,8 +51,10 @@ module.exports = function (app) {
 
     //DELETE tips
     app.delete('/tips/:id', function (req, res) {
-        TipModel.findByIdAndRemove(req.params.id, function (err) {
+        TipModel.findById(req.params.id).then((tip) => {
+            tip.destroy()
             res.redirect('/')
         })
     })
+
 };

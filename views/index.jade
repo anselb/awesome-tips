@@ -3,17 +3,28 @@ block head
     link(rel='stylesheet' href='style.css')
 block body
     #wrapper
-        div(id="map")
+        div(id="map").hidden-sm
         #tips
           .container-fluid
             .row
-              .col-xs-12
-                br
-                form(action="/tips" method="POST")
-                  .form-group
-                    textarea.form-control(name="body")
-                  .text-right
-                    button.btn.btn-primary(type="Submit") Save Tip
+                if (currentUser)
+                  .col-xs-12
+                        legend New Tip
+                        .form-group
+                            label(for='tip-body') Tip
+                            textarea#tip-content.form-control(name='body', placeholder="What's your tip?")
+                        .text-right
+                            button#tip-submit.btn.btn-primary Submit Tip
+                div.tipbox
+
+                    h2 Tips
+                    br
+                    for tip in tips
+                        p=tip.body
+                        p=tip.owner
+                        form(action="/tips/#{tip.id}?_method=DELETE" method="POST" )
+                            .text-right
+                              button.btn.btn-primary(type="Submit") Delete
     block content
     script(src='markerclusterer.js')
     script(src='js-map.js')

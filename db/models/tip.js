@@ -6,12 +6,13 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.TEXT
     },
     longitude: {
-        type: DataTypes.FLOAT,
-        defaultValue: 0.00
+        type: DataTypes.FLOAT
     },
     latitude: {
-        type: DataTypes.FLOAT,
-        defaultValue: 0.00
+        type: DataTypes.FLOAT
+    },
+    owner: {
+        type: DataTypes.STRING
     },
 
   }, {

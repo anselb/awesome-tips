@@ -5,7 +5,7 @@
   "main": "./bin/www",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node ./bin/www"
+    "start": "nodemon ./bin/www"
   },
   "repository": {
     "type": "git",
@@ -28,11 +28,13 @@
     "express-flash": "0.0.2",
     "express-session": "^1.15.6",
     "jade": "^1.11.0",
+    "method-override": "^2.3.10",
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
     "pg": "^7.3.0",
     "pg-hstore": "^2.3.2",
-    "sequelize": "^4.20.3"
+    "sequelize": "^4.20.3",
+    "socketio": "^1.0.0"
   },
   "devDependencies": {
     "nodemon": "^1.12.1"
