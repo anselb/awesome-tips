@@ -37,6 +37,14 @@ app.get('/profile' , function(req,res){
   })
 });
 
+app.get('/login', (req, res)=>{
+  res.render('login')
+})
+
+app.get('/sign-up', (req, res)=>{
+  res.render('sign-up')
+})
+
 
 // ROUTES
 require('./controllers/passport')(passport);            // required for passport
@@ -50,7 +58,6 @@ app.use(function(req, res, next) {
   err.status = 404;
   next(err);
 });
-
 
 app.use(function(err, req, res, next) {
   if(err.status == 404) {
