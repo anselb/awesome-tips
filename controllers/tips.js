@@ -70,7 +70,7 @@ module.exports = function (app) {
         });
     });
 
-    //PUT update vote
+    //PUT down vote
     app.put('/tips/:id/votedown', function (req, res) {
 
         TipModel.findById(req.params.id).then(function(tip){
