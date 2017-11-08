@@ -12,21 +12,35 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.FLOAT
         },
         vote: {
-            type: DataTypes.INTEGER
+            type: DataTypes.INTEGER,
+            defaultValue: 0
         },
-        owner: {
+        UserId: {
             type: DataTypes.INTEGER
         }
     }, {
         classMethods: {
             associate: function (models) {
-                Tip.belongsTo(models.User, {
-                    key: 'owner',
-                    onDelete: 'cascade',
-                    onUpdate: 'cascade'
-                });
+                Tip.belongsTo(models.User);
+            },
+            countVotes: function() {
+                return this.findAll()
+                    .then(function(tips) {
+                        return this.vote
+                    })
+            }
+        },
+        instanceMethods: {
+            getVoteCount: function() {
+                return this.vote
+            }
+        },
+        hooks: {
+            beforeSave: function(tip) {
+
             }
         }
+
     });
     return Tip;
 };

@@ -22,24 +22,13 @@ module.exports = function (app) {
         })
     }); 
 
-    //GET all the tips
+    //GET all tip locations for map markers
     app.get('/tips', function(req,res) {
-        UserModel.findAll({
-            attributes: ['username'],
-            include: [{
-                    model: TipModel
-                }
-            ]
-        }).then((userTips) => {
-            res.send(userTips);
-        });
-      // TipModel.findAll({
-      //     include: {
-      //         model: UserModel
-      //     }
-      // }).then((tips) => {
-      //   res.send(tips);
-      // })
+      TipModel.findAll({
+
+      }).then((tips) => {
+        res.send(tips);
+      })
     });
 
     // SUCCESSFULLY POSTS TO DB // (DONE 11/01)
@@ -49,7 +38,7 @@ module.exports = function (app) {
             body : req.body.tipContent,
             longitude : req.body.tipLng,
             latitude : req.body.tipLat,
-            owner: req.user.id
+            UserId: req.user.id
         }).then( (tip) => {
             tip.save({}).then( () => {
               res.redirect('/')
@@ -59,10 +48,42 @@ module.exports = function (app) {
 
     //PUT edit tips
     app.put('/tips/:id', function (req, res) {
-        console.log(req.body);
+        // console.log(req.body);
         TipModel.findByIdAndUpdate(req.params.id, req.body, function (err, tip) {
             res.redirect('/tips/' + tip._id)
         })
+    });
+
+    //PUT update vote
+    app.put('/tips/:id/voteup', function (req, res) {
+
+        TipModel.findById(req.params.id).then(function(tip){
+            if(tip) {
+                let votes = tip.vote + 1;
+                tip.update(
+                    { vote: votes },
+                    { where: { id: req.params.id } });
+                res.redirect('/')
+            } else {
+                res.send(404);
+            }
+        });
+    });
+
+    //PUT down vote
+    app.put('/tips/:id/votedown', function (req, res) {
+
+        TipModel.findById(req.params.id).then(function(tip){
+            if(tip) {
+                let votes = tip.vote - 1;
+                tip.update(
+                    { vote: votes },
+                    { where: { id: req.params.id } });
+                res.redirect('/')
+            } else {
+                res.send(404);
+            }
+        });
     });
 
     //DELETE tips

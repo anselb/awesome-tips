@@ -50,13 +50,14 @@ function initMap() {
 
     // FOR MARKERS START
     getTipMarkers(function(tips){
+        console.log(tips);
       // Add some markers to the map.
       // Note: The code uses the JavaScript Array.prototype.map() method to
       // create an array of markers based on a given "locations" array.
       // The map() method here has nothing to do with the Google Maps API.
       var markers = tips.map(function(tip, i) {
           var marker = new google.maps.Marker({
-              position: {lat : tip.latitude, lng : tip.longitude},
+              position: {lat : Number(tip.latitude), lng : Number(tip.longitude)},
               label: labels[i % labels.length],
           });
           var infowindow = new google.maps.InfoWindow({
