@@ -10,8 +10,6 @@ var methodOverride = require('method-override');
 require('dotenv').config();
 
 var models = require('./db/models');
-const TipModel = require('./db/models/index').Tip;
-const UserModel = require('./db/models/index').User;
 
 // create .env file in root direct if not present, assign a value to SESSION_SECRET=SOMESTRING
 app.use(cookieParser());                // read cookies (needed for auth)

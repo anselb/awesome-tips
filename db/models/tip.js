@@ -13,20 +13,30 @@ module.exports = (sequelize, DataTypes) => {
         },
         vote: {
             type: DataTypes.INTEGER
-        },
-        owner: {
-            type: DataTypes.INTEGER
         }
     }, {
         classMethods: {
             associate: function (models) {
-                Tip.belongsTo(models.User, {
-                    key: 'owner',
-                    onDelete: 'cascade',
-                    onUpdate: 'cascade'
-                });
+                Tip.belongsTo(models.User);
+            },
+            countVotes: function() {
+                return this.findAll()
+                    .then(function(tips) {
+                        return this.vote
+                    })
+            }
+        },
+        instanceMethods: {
+            getVoteCount: function() {
+                return this.vote
+            }
+        },
+        hooks: {
+            beforeDefine: function(tip) {
+                tip.vote = 1
             }
         }
+
     });
     return Tip;
 };

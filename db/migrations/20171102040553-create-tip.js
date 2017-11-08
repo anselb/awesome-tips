@@ -6,7 +6,16 @@ module.exports = {
                 allowNull: false,
                 autoIncrement: true,
                 primaryKey: true,
-                type: Sequelize.INTEGER
+                type: Sequelize.INTEGER,
+            },
+            UserId: {
+                type: Sequelize.INTEGER,
+                references: {
+                    model: 'Users',
+                    key: 'id'
+                },
+                onDelete: 'cascade',
+                onUpdate: 'cascade'
             },
             body: {
                 type: Sequelize.TEXT
@@ -29,15 +38,6 @@ module.exports = {
             updatedAt: {
                 allowNull: false,
                 type: Sequelize.DATE
-            },
-            owner: {
-                type: Sequelize.INTEGER,
-                references: {
-                    model: 'Users',
-                    key: 'id'
-                },
-                onDelete: 'cascade',
-                onUpdate: 'cascade'
             }
         });
     },

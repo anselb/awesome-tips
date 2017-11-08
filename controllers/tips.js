@@ -38,7 +38,7 @@ module.exports = function (app) {
             body : req.body.tipContent,
             longitude : req.body.tipLng,
             latitude : req.body.tipLat,
-            owner: req.user.id
+            UserId: req.user.id
         }).then( (tip) => {
             tip.save({}).then( () => {
               res.redirect('/')
