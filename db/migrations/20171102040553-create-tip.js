@@ -12,10 +12,16 @@ module.exports = {
                 type: Sequelize.TEXT
             },
             longitude: {
-                type: Sequelize.FLOAT
+                type: Sequelize.FLOAT,
+                unique: true
             },
             latitude: {
-                type: Sequelize.FLOAT
+                type: Sequelize.FLOAT,
+                unique: true
+            },
+            vote: {
+                type: Sequelize.BOOLEAN,
+                unique: true
             },
             createdAt: {
                 allowNull: false,
@@ -25,10 +31,10 @@ module.exports = {
                 allowNull: false,
                 type: Sequelize.DATE
             },
-            UserId: {
+            owner: {
                 type: Sequelize.INTEGER,
                 references: {
-                    model: Sequelize.User,
+                    model: 'Users',
                     key: 'id'
                 },
                 onDelete: 'cascade',

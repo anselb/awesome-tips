@@ -6,20 +6,17 @@ var session = require('express-session');
 var flash = require('connect-flash');
 var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
-var methodOverride = require('method-override')
+var methodOverride = require('method-override');
 require('dotenv').config();
 
 var models = require('./db/models');
-
-var maps = require('@google/maps').createClient({
-    key: process.env.MAP_API_KEY
-});  // use library for Location & Places https://github.com/googlemaps/google-maps-services-js
-
+const TipModel = require('./db/models/index').Tip;
+const UserModel = require('./db/models/index').User;
 
 // create .env file in root direct if not present, assign a value to SESSION_SECRET=SOMESTRING
 app.use(cookieParser());                // read cookies (needed for auth)
 app.use(bodyParser());                  // get information from html forms
-app.use(methodOverride('_method'))
+app.use(methodOverride('_method'));
 app.use(session({secret: process.env.SESSION_SECRET})); // session secret
 app.use(passport.initialize());
 app.use(passport.session());            // persistent login sessions
@@ -31,6 +28,7 @@ app.set('view engine' , 'jade');        // set express view engine to use jade
 
 app.get('/', function (req, res) {
   req.flash('info', 'Welcome');
+
   models.Tip.findAll().then((tips) => {
       res.render('index', {currentUser : req.user, infoFlash : req.flash('info'), tips: tips});
   })
