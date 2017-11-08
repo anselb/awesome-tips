@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
     User.associate = function (models) {
         // associations can be defined here
         User.hasMany(models.Tip, {
-            foreignKey: 'id',
+            foreignKey: 'owner',
             onDelete: 'cascade',
             onUpdate: 'cascade'
         })

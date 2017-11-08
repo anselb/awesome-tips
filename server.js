@@ -10,6 +10,8 @@ var methodOverride = require('method-override');
 require('dotenv').config();
 
 var models = require('./db/models');
+const TipModel = require('./db/models/index').Tip;
+const UserModel = require('./db/models/index').User;
 
 // create .env file in root direct if not present, assign a value to SESSION_SECRET=SOMESTRING
 app.use(cookieParser());                // read cookies (needed for auth)
@@ -26,6 +28,7 @@ app.set('view engine' , 'jade');        // set express view engine to use jade
 
 app.get('/', function (req, res) {
   req.flash('info', 'Welcome');
+
   models.Tip.findAll().then((tips) => {
       res.render('index', {currentUser : req.user, infoFlash : req.flash('info'), tips: tips})
   })

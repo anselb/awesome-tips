@@ -13,12 +13,15 @@ module.exports = (sequelize, DataTypes) => {
         },
         vote: {
             type: DataTypes.INTEGER
+        },
+        owner: {
+            type: DataTypes.INTEGER
         }
     }, {
         classMethods: {
             associate: function (models) {
                 Tip.belongsTo(models.User, {
-                    key: 'id',
+                    key: 'owner',
                     onDelete: 'cascade',
                     onUpdate: 'cascade'
                 });

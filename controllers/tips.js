@@ -1,5 +1,5 @@
 const TipModel = require('../db/models/index').Tip;
-
+const UserModel = require('../db/models/index').User;
 
 module.exports = function (app) {
     //GET new tip form
@@ -24,22 +24,33 @@ module.exports = function (app) {
 
     //GET all the tips
     app.get('/tips', function(req,res) {
-      TipModel.findAll({}).then((tips) => {
-        res.send(tips);
-      })
+        UserModel.findAll({
+            attributes: ['username'],
+            include: [{
+                    model: TipModel
+                }
+            ]
+        }).then((userTips) => {
+            res.send(userTips);
+        });
+      // TipModel.findAll({
+      //     include: {
+      //         model: UserModel
+      //     }
+      // }).then((tips) => {
+      //   res.send(tips);
+      // })
     });
 
     // SUCCESSFULLY POSTS TO DB // (DONE 11/01)
     //POST create new tips
     app.post('/tips', function (req, res) {
-        console.log(req.body.lng);
         TipModel.create({
             body : req.body.tipContent,
             longitude : req.body.tipLng,
             latitude : req.body.tipLat,
-            owner: req.user.username
+            owner: req.user.id
         }).then( (tip) => {
-            // tip.owner = req.user.username;
             tip.save({}).then( () => {
               res.redirect('/')
             });
@@ -57,7 +68,7 @@ module.exports = function (app) {
     //DELETE tips
     app.delete('/tips/:id', function (req, res) {
         TipModel.findById(req.params.id).then((tip) => {
-            tip.destroy()
+            tip.destroy();
             res.redirect('/')
         })
     })

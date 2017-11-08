@@ -1,12 +1,12 @@
 module.exports = function (app, passport) {
 
     app.post('/sign-up', passport.authenticate('local-signup', {
-        successRedirect: '/', // redirect to the secure profile section
+        successRedirect: '/tips', // redirect to the secure profile section
         failureRedirect: '/', // redirect back to the signup page if there is an error
     }));
 
     app.post('/login', passport.authenticate('local-login', {
-        successRedirect: '/', // redirect to the secure profile section
+        successRedirect: '/tips', // redirect to the secure profile section
         failureRedirect: '/', // redirect back to the signup page if there is an error
     }));
 

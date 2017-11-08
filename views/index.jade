@@ -19,13 +19,13 @@ block body
 
                     h2 Tips
                     br
-                    for tip in tips
+                    each tip, i in tips
                         p
-                            small  <em>#{tip.createdAt}</em>
+                            small  #{i+1}. <em>#{tip.createdAt}</em>
                         p
                             | #{tip.body}
                             | by: #{tip.owner}
-                        //p=tip.owner
+
                         form(action="/tips/#{tip.id}?_method=DELETE" method="POST" )
                             .text-right
                               button.btn.btn-primary(type="Submit") Delete

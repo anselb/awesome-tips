@@ -33,7 +33,6 @@ module.exports = {
             },
             owner: {
                 type: Sequelize.INTEGER,
-                unique: true,
                 references: {
                     model: 'Users',
                     key: 'id'
