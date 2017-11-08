@@ -32,7 +32,13 @@ app.set('view engine' , 'jade');        // set express view engine to use jade
 app.get('/', function (req, res) {
   req.flash('info', 'Welcome');
   models.Tip.findAll().then((tips) => {
-      res.render('index', {currentUser : req.user, infoFlash : req.flash('info'), tips: tips})
+      res.render('index', {currentUser : req.user, infoFlash : req.flash('info'), tips: tips});
+  })
+});
+
+app.get('/profile' , function(req,res){
+  models.Tip.findAll({owner : req.user.username}).then((tips) => {
+    res.render('profile', {currentUser : req.user, tips : tips});
   })
 });
 
