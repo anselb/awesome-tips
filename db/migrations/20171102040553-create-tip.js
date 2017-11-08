@@ -20,8 +20,7 @@ module.exports = {
                 unique: true
             },
             vote: {
-                type: Sequelize.BOOLEAN,
-                unique: true
+                type: Sequelize.INTEGER,
             },
             createdAt: {
                 allowNull: false,

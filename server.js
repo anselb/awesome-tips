@@ -29,7 +29,9 @@ app.set('view engine' , 'jade');        // set express view engine to use jade
 app.get('/', function (req, res) {
   req.flash('info', 'Welcome');
 
-  models.Tip.findAll().then((tips) => {
+  models.Tip.findAll({
+    // TODO :: USE JOIN TO GET USERNAMES FROM TIP BY ID
+  }).then((tips) => {
       res.render('index', {currentUser : req.user, infoFlash : req.flash('info'), tips: tips})
   })
 });

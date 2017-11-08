@@ -21,10 +21,19 @@ block body
                     br
                     each tip, i in tips
                         p
-                            small  #{i+1}. <em>#{tip.createdAt}</em>
+                            small  #{i+1}. <em>#{tip.createdAt}</em> ( #{tip.vote} )
                         p
                             | #{tip.body}
                             | by: #{tip.owner}
+
+
+                        form(action="/tips/#{tip.id}/voteup?_method=PUT" method="POST" )
+                            .text-right
+                                button.btn.btn-primary(type="Submit") Vote Up
+
+                        form(action="/tips/#{tip.id}/votedown?_method=PUT" method="POST" )
+                            .text-right
+                                button.btn.btn-primary(type="Submit") Vote Down
 
                         form(action="/tips/#{tip.id}?_method=DELETE" method="POST" )
                             .text-right
