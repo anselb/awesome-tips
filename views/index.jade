@@ -23,19 +23,19 @@ block body
                         div.col-xs-12
                             each tip, i in tips
                                 p.col-xs-9
-                                    small  #{i+1}. <em>#{tip.createdAt}</em> ( #{tip.vote} )
+                                    small  #{i+1}. <em>#{tip.createdAt}</em> <small>( #{tip.vote} )</small>
 
                                     form(action="/tips/#{tip.id}/voteup?_method=PUT" method="POST" )
                                         .text-right.col-xs-1
-                                            button.glyphicon.glyphicon-thumbs-up(type="Submit")
+                                            button.glyphicon.glyphicon-thumbs-up.btn-outline-success(type="Submit")
 
                                     form(action="/tips/#{tip.id}/votedown?_method=PUT" method="POST" )
                                         .text-right.col-xs-1
-                                            button.glyphicon.glyphicon-thumbs-down(type="Submit")
+                                            button.glyphicon.glyphicon-thumbs-down.btn-outline-danger(type="Submit")
 
                                     form(action="/tips/#{tip.id}?_method=DELETE" method="POST" )
                                         .text-right.col-xs-1
-                                            button.glyphicon.glyphicon-trash(type="Submit")
+                                            button.glyphicon.glyphicon-trash.btn-outline-dark(type="Submit")
                                 p.col-xs-9
                                     | #{tip.body}
                                     | by: #{tip.owner}
