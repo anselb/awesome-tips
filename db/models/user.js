@@ -3,23 +3,17 @@ var bcrypt = require('bcrypt-nodejs');
 
 module.exports = (sequelize, DataTypes) => {
     var User = sequelize.define('User', {
-        username: {
-            type: DataTypes.STRING,
-            unique: true
-        },
+        username: { type: DataTypes.STRING, unique: true },
         password: DataTypes.STRING,
     });
 
     User.associate = function (models) {
         // associations can be defined here
-        User.hasMany(models.Tip, {
-            foreignKey: 'id'
-        })
+        User.hasMany(models.Tip)
     };
 
     User.prototype.generateHash = function (password) {
         var hashedPass = bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
-        console.log(hashedPass);
         return hashedPass;
     };
 

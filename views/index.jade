@@ -1,6 +1,4 @@
 extends layout
-block head
-    link(rel='stylesheet' href='style.css')
 block body
     #wrapper
         div(id="map").hidden-sm
@@ -16,7 +14,6 @@ block body
                         .text-right
                             button#tip-submit.btn.btn-primary Submit Tip
                 div.tipbox
-
                     h2 Tips
                     br
                     div.row
@@ -38,9 +35,8 @@ block body
                                             button.glyphicon.glyphicon-trash.btn-outline-dark(type="Submit")
                                 p.col-xs-9
                                     | #{tip.body}
-                                    | by: #{tip.owner}
+                                    | by: #{tip.User.username}
 
-    block content
     script(src='markerclusterer.js')
     script(src='js-map.js')
     script(src='https://maps.googleapis.com/maps/api/js?key=AIzaSyAaGNPA1AHCW0seaqLolurw0WDxDBccbco&callback=initMap')

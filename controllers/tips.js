@@ -2,6 +2,15 @@ const TipModel = require('../db/models/index').Tip;
 const UserModel = require('../db/models/index').User;
 
 module.exports = function (app) {
+    //GET all tip locations for map markers
+    app.get('/tips', function(req,res) {
+        TipModel.findAll({
+
+        }).then((tips) => {
+            res.send(tips);
+        })
+    });
+
     //GET new tip form
     app.get('/tips/new', function (req, res) {
         res.render('tips-new', {})
@@ -21,15 +30,6 @@ module.exports = function (app) {
             res.render('tips-edit', { tip: tip })
         })
     }); 
-
-    //GET all tip locations for map markers
-    app.get('/tips', function(req,res) {
-      TipModel.findAll({
-
-      }).then((tips) => {
-        res.send(tips);
-      })
-    });
 
     // SUCCESSFULLY POSTS TO DB // (DONE 11/01)
     //POST create new tips
