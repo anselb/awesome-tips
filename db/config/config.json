@@ -1,6 +1,6 @@
 {
   "development": {
-    "username": "postgres",
+    "username": "James",
     "password": null,
     "database": "tip-dev",
     "host": "127.0.0.1",
