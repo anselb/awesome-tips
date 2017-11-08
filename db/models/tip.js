@@ -13,6 +13,9 @@ module.exports = (sequelize, DataTypes) => {
         },
         vote: {
             type: DataTypes.INTEGER
+        },
+        UserId: {
+            type: DataTypes.INTEGER
         }
     }, {
         classMethods: {
