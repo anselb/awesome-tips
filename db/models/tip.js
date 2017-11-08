@@ -12,7 +12,8 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.FLOAT
         },
         vote: {
-            type: DataTypes.INTEGER
+            type: DataTypes.INTEGER,
+            defaultValue: 0
         },
         UserId: {
             type: DataTypes.INTEGER
@@ -35,8 +36,8 @@ module.exports = (sequelize, DataTypes) => {
             }
         },
         hooks: {
-            beforeDefine: function(tip) {
-                tip.vote = 1
+            beforeSave: function(tip) {
+
             }
         }
 

@@ -3,7 +3,6 @@
 #map {
     height: 70%;
     width: 70%;
-    border: 1px red solid;
 }
 /* Optional: Makes the sample page fill the window. */
 html, body {
@@ -12,10 +11,75 @@ html, body {
     padding: 0;
 }
 
-body{
-    display: flex;
-    flex-direction: column;
-    align-items: left;
+input {
+    color: black;
+    padding-left: 4px;
+}
+
+li, a {
+    text-decoration: none;
+    list-style: none;
+}
+
+a {
+    color: #fff
+}
+
+.container {
+    margin-left: 8%;
+    padding: 0;
+}
+
+
+#username,
+#password {
+    margin-top: 6px;
+    margin-left: 12px;
+}
+
+label {
+    text-transform: capitalize;
+}
+
+#login,
+#signup,
+.logout {
+    margin-top: 6px;
+    padding: 8px;
+    width: 95%;
+
+    text-align: left;
+    display: inline-block;
+    float: left;
+    border: 1px solid #fff;
+}
+
+.navbar-brand {
+    margin-left: 18px;
+    margin-top: 8px;
+    font-size: 2.2em;
+    font-family: "News Cycle", "Arial Narrow Bold", sans-serif;
+}
+
+/*body{*/
+    /*display: flex;*/
+    /*flex-direction: column;*/
+    /*align-items: left;*/
+/*}*/
+
+/*#userAuthForm {*/
+    /*width: 100vw;*/
+    /*display: block;*/
+/*}*/
+
+#userAuthForm > input,
+#userAuthForm > li,
+#userAuthForm > ll > a,
+.userAuthForm > input,
+#userAuthForm > li,
+#userAuthForm > ll > a {
+    display: inline-block;
+    margin: 8px;
 }
 
 #tips{
@@ -27,7 +91,7 @@ body{
     margin-top: -20px;
 }
 #wrapper{
-    width: 100%;
+    width: 100Vw;
 }
 #map{
     margin-top: -20px;
