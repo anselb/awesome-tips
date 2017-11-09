@@ -54,8 +54,10 @@ module.exports = function (app) {
         })
     });
 
-    //PUT update vote
-    app.put('/tips/:id/voteup', function (req, res) {
+
+    //Votes
+    //Post update vote
+    app.post('/tips/:id/voteup', function (req, res) {
 
         TipModel.findById(req.params.id).then(function(tip){
             if(tip) {
@@ -70,8 +72,8 @@ module.exports = function (app) {
         });
     });
 
-    //PUT down vote
-    app.put('/tips/:id/votedown', function (req, res) {
+    //Post down vote
+    app.post('/tips/:id/votedown', function (req, res) {
 
         TipModel.findById(req.params.id).then(function(tip){
             if(tip) {

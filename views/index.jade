@@ -18,24 +18,27 @@ block body
                     br
                     div.row
                         div.col-xs-12
+                          .tipsContainer
                             each tip, i in tips
+                              .tip
                                 p.col-xs-9
-                                    small  #{i+1}. <em>#{tip.createdAt}</em> <small>( #{tip.vote} )</small>
-
-                                    form(action="/tips/#{tip.id}/voteup?_method=PUT" method="POST" )
+                                    small  #{i+1}. <em>#{tip.createdAt}</em> <small class="tip-vote-count">#{tip.vote}</small>
+                                    form.voteup
                                         .text-right.col-xs-1
                                             button.glyphicon.glyphicon-thumbs-up.btn-outline-success(type="Submit")
 
-                                    form(action="/tips/#{tip.id}/votedown?_method=PUT" method="POST" )
+                                    form.votedown
                                         .text-right.col-xs-1
                                             button.glyphicon.glyphicon-thumbs-down.btn-outline-danger(type="Submit")
 
-                                    form(action="/tips/#{tip.id}?_method=DELETE" method="POST" )
+                                    form.tip-delete
                                         .text-right.col-xs-1
                                             button.glyphicon.glyphicon-trash.btn-outline-dark(type="Submit")
                                 p.col-xs-9
                                     | #{tip.body}
                                     | by: #{tip.User.username}
+                                    
+                                p.tip-id(hidden)= tip.id
 
     script(src='markerclusterer.js')
     script(src='js-map.js')

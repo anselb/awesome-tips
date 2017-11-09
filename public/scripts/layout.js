@@ -28,6 +28,28 @@ $(document).ready(function(){
         location.reload();
       });
     })
+  });
+
+  $('.voteup').submit(function(e){
+    e.preventDefault();
+    var tipId = $(this).parent('.tip').children('.tip-id').text();
+    var thisForm = $(this);
+    $.post('/tips/'+tipId+'/voteup', function(){
+      var tipCountElement = thisForm.parent('.tip').find('.tip-vote-count');
+      var newVoteCount = Number(tipCountElement.text()) + 1;
+      tipCountElement.text(newVoteCount);
+    });
+  });
+
+  $('.votedown').submit(function(e){
+    e.preventDefault();
+    var tipId = $(this).parent('.tip').children('.tip-id').text();
+    var thisForm = $(this);
+    $.post('/tips/'+tipId+'/votedown', function(){
+      var tipCountElement = thisForm.parent('.tip').find('.tip-vote-count');
+      var newVoteCount = Number(tipCountElement.text()) - 1;
+      tipCountElement.text(newVoteCount);
+    })
   })
 
 });
