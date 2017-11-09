@@ -21,23 +21,28 @@ $(document).ready(function(){
   $('#tip-submit').click(function(){
     var lat = 0;
     var lng = 0;
-    navigator.geolocation.getCurrentPosition(function(position) {
-      lat = position.coords.latitude;
-      lng = position.coords.longitude;
-      $.post('/tips', {tipContent : $('#tip-content').val(), tipLat : lat, tipLng : lng}, function(){
+    var address = $('#tip-address').val();
+    if(address.length < 1 ){
+      navigator.geolocation.getCurrentPosition(function(position) {
+        lat = position.coords.latitude;
+        lng = position.coords.longitude;
+        $.post('/tips', {tipContent : $('#tip-content').val(), tipLat : lat, tipLng : lng, address : address}, function(){
+          location.reload();
+        });
+      })
+    }else{
+      $.post('/tips', {tipContent : $('#tip-content').val(), tipLat : lat, tipLng : lng, address : address}, function(){
         location.reload();
       });
-    })
+    }
   });
 
   $('.voteup').submit(function(e){
     e.preventDefault();
     var tipId = $(this).parent('.tip').children('.tip-id').text();
     var thisForm = $(this);
-    $.post('/tips/'+tipId+'/voteup', function(){
-      var tipCountElement = thisForm.parent('.tip').find('.tip-vote-count');
-      var newVoteCount = Number(tipCountElement.text()) + 1;
-      tipCountElement.text(newVoteCount);
+    $.post('/tips/'+tipId+'/voteup', function(voteCount){
+      thisForm.parent('.tip').find('.tip-vote-count').text(voteCount);
     });
   });
 
@@ -45,11 +50,21 @@ $(document).ready(function(){
     e.preventDefault();
     var tipId = $(this).parent('.tip').children('.tip-id').text();
     var thisForm = $(this);
-    $.post('/tips/'+tipId+'/votedown', function(){
-      var tipCountElement = thisForm.parent('.tip').find('.tip-vote-count');
-      var newVoteCount = Number(tipCountElement.text()) - 1;
-      tipCountElement.text(newVoteCount);
+    $.post('/tips/'+tipId+'/votedown', function(voteCount){
+      thisForm.parent('.tip').find('.tip-vote-count').text(voteCount);
     })
   })
 
+  $('.tip-delete').submit(function(e){
+    e.preventDefault();
+    var tipId = $(this).parent('.tip').children('.tip-id').text();
+    var thisForm = $(this);
+    $.ajax({
+      url: '/tips/'+tipId,
+      type: 'DELETE'
+      }).done(function(){
+        thisForm.parent('.tip').remove();
+      })
+    });
+    
 });

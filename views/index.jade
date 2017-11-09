@@ -11,6 +11,9 @@ block body
                         .form-group
                             label(for='tip-body') Tip
                             textarea#tip-content.form-control(name='body', placeholder="What's your tip?")
+                        .form-group
+                            label(for='tip-address') Address of Location ("Leave Empty to use your Current Location")
+                            input#tip-address.form-control(type='text', name='address' placeholder='1547 Mission St, San Francisco, CA 94103')
                         .text-right
                             button#tip-submit.btn.btn-primary Submit Tip
                 div.tipbox
@@ -23,17 +26,18 @@ block body
                               .tip
                                 p.col-xs-9
                                     small  #{i+1}. <em>#{tip.createdAt}</em> <small class="tip-vote-count">#{tip.vote}</small>
-                                    form.voteup
-                                        .text-right.col-xs-1
-                                            button.glyphicon.glyphicon-thumbs-up.btn-outline-success(type="Submit")
+                                    if (currentUser)
+                                      form.voteup
+                                          .text-right.col-xs-1
+                                              button.glyphicon.glyphicon-thumbs-up.btn-outline-success(type="Submit")
 
-                                    form.votedown
-                                        .text-right.col-xs-1
-                                            button.glyphicon.glyphicon-thumbs-down.btn-outline-danger(type="Submit")
-
-                                    form.tip-delete
-                                        .text-right.col-xs-1
-                                            button.glyphicon.glyphicon-trash.btn-outline-dark(type="Submit")
+                                      form.votedown
+                                          .text-right.col-xs-1
+                                              button.glyphicon.glyphicon-thumbs-down.btn-outline-danger(type="Submit")
+                                      if (currentUser.id == tip.UserId)          
+                                        form.tip-delete
+                                            .text-right.col-xs-1
+                                                button.glyphicon.glyphicon-trash.btn-outline-dark(type="Submit")
                                 p.col-xs-9
                                     | #{tip.body}
                                     | by: #{tip.User.username}

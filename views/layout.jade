@@ -42,6 +42,7 @@ html(lang="en")
                                 .col-xs-2
                                     ul.text-left
                                         a.nav-item(href="/user/" + currentUser.username)=currentUser.username
+                                        p#userId(hidden)=currentUser.id
                                 .col-xs-4.col-xs-offset-1
                                     a(href="/").navbar-brand.nav-item  Awesome Tips
                                 .col-xs-4.col-xs-offset-1
