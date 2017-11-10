@@ -27,7 +27,7 @@ app.set('view engine' , 'jade');        // set express view engine to use jade
 app.get('/', function (req, res) {
   models.Tip.findAll({ include: models.User }).then((tips) => {
       // req.flash('info', 'Flash message added');
-      res.render('index', { currentUser : req.user, tips: tips });
+      res.render('index', { currentUser : req.user, tips: tips});
   })
 });
 
@@ -71,7 +71,3 @@ app.use(function(err, req, res, next) {
 // EXPORT MODULE, USE BIN/WWW - SAME AS EXPRESS-GENERATOR
 // NOT SURE IT MAKES ANY DIFFERENCE
 module.exports = app;
-
-// app.listen(3000, function () {
-//     console.log('Awesome tips listening on port 3000!')
-// });

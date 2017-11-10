@@ -1,5 +1,6 @@
 const TipModel = require('../db/models/index').Tip;
 const UserModel = require('../db/models/index').User;
+const VoteModel = require('../db/models/index').Vote;
 
 module.exports = function (app) {
     //GET all tip locations for map markers
@@ -38,7 +39,8 @@ module.exports = function (app) {
             body : req.body.tipContent,
             longitude : req.body.tipLng,
             latitude : req.body.tipLat,
-            UserId: req.user.id
+            UserId: req.user.id,
+            address : req.body.address
         }).then( (tip) => {
             tip.save({}).then( () => {
               res.redirect('/')
@@ -54,43 +56,71 @@ module.exports = function (app) {
         })
     });
 
-    //PUT update vote
-    app.put('/tips/:id/voteup', function (req, res) {
 
-        TipModel.findById(req.params.id).then(function(tip){
-            if(tip) {
-                let votes = tip.vote + 1;
-                tip.update(
-                    { vote: votes },
-                    { where: { id: req.params.id } });
-                res.redirect('/')
-            } else {
-                res.send(404);
-            }
-        });
+    //Votes
+
+    //Get Vote Count of Tip
+    app.get('/tips/:id/votes', function(req,res){
+      TipModel.findById(req.params.id).then(function(tip){
+        res.send(tip.vote);
+      });
     });
 
-    //PUT down vote
-    app.put('/tips/:id/votedown', function (req, res) {
+    //Post update vote
+    app.post('/tips/:id/voteup', function (req, res) {
+      VoteModel.findOne({where : {TipId : req.params.id, UserId : req.user.id} } ).then(function(vote){
+        if(!vote){
+          VoteModel.create({TipId : req.params.id, UserId : req.user.id, votePositive : true}).then(function(){
+            TipModel.findById(req.params.id).then(function(tip){
+              tip.countVotes(function(voteCount){
+                tip.update({vote : voteCount});
+                res.send(String(voteCount));
+              })
+            });
+          })
+        }else{
+          vote.update({votePositive : true}).then(function(){
+            TipModel.findById(req.params.id).then(function(tip){
+              tip.countVotes(function(voteCount){
+                tip.update({vote : voteCount});
+                res.send(String(voteCount));
+              })
+            });
+          });
+        }
+      })
+    });
 
-        TipModel.findById(req.params.id).then(function(tip){
-            if(tip) {
-                let votes = tip.vote - 1;
-                tip.update(
-                    { vote: votes },
-                    { where: { id: req.params.id } });
-                res.redirect('/')
-            } else {
-                res.send(404);
-            }
-        });
+    //Post down vote
+    app.post('/tips/:id/votedown', function (req, res) {
+        VoteModel.findOne({where : {TipId : req.params.id, UserId : req.user.id} }).then(function(vote){
+          if(!vote){
+            VoteModel.create({TipId : req.params.id, UserId : req.user.id, votePositive : false}).then(function(){
+              TipModel.findById(req.params.id).then(function(tip){
+                tip.countVotes(function(voteCount){
+                  tip.update({vote : voteCount});
+                  res.send(String(voteCount));
+                })
+              });
+            })
+          }else{
+            vote.update({votePositive : false}).then(function(){
+              TipModel.findById(req.params.id).then(function(tip){
+                tip.countVotes(function(voteCount){
+                  tip.update({vote : voteCount});
+                  res.send(String(voteCount));
+                })
+              });
+            })
+          }
+        })
     });
 
     //DELETE tips
     app.delete('/tips/:id', function (req, res) {
         TipModel.findById(req.params.id).then((tip) => {
             tip.destroy();
-            res.redirect('/')
+            res.send();
         })
     })
 

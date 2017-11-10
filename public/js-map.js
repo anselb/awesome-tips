@@ -3,18 +3,38 @@ var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 function getTipMarkers(map){
   $.get('/tips', function(tips){
     var markers = tips.map(function(tip, i) {
-        var marker = new google.maps.Marker({
-            position: {lat : Number(tip.latitude), lng : Number(tip.longitude)},
-            label: labels[i % labels.length],
-            map: map
-        });
-        var infowindow = new google.maps.InfoWindow({
-          content: tip.body
-        });
-        marker.addListener('click', function() {
-          infowindow.open(map, marker);
-        });
-        return marker;
+
+        if(tip.address != ''){
+          codeAddress(tip.address, function(addressPos){
+            var marker = new google.maps.Marker({
+                position: {lat : addressPos.lat(), lng : addressPos.lng()},
+                label: labels[i % labels.length],
+                map: map
+            });
+            addInfoWindow(marker, function(newMarker){
+              return newMarker;
+            });
+          });
+        }else{
+          var marker = new google.maps.Marker({
+              position: {lat : Number(tip.latitude), lng : Number(tip.longitude)},
+              label: labels[i % labels.length],
+              map: map
+          });
+          addInfoWindow(marker, function(newMarker){
+            return newMarker;
+          });
+        }
+
+        function addInfoWindow(marker, cb){
+          var infowindow = new google.maps.InfoWindow({
+            content: tip.body
+          });
+          marker.addListener('click', function() {
+            infowindow.open(map, marker);
+          });
+          cb(marker);
+        }
     });
 
     // Add a marker clusterer to manage the markers.
@@ -61,5 +81,24 @@ function getLocation() {
         handleLocationError(false, infoWindow, map.getCenter());
     }
 }
+
+//Get Latitude / Longitude of address
+function codeAddress(address, cb) {
+    var geocoder = new google.maps.Geocoder();
+    geocoder.geocode( { 'address': address}, function(results, status) {
+      if (status == 'OK') {
+        //console.log(results[0].geometry.location);
+        cb(results[0].geometry.location);
+      }
+        // map.setCenter(results[0].geometry.location);
+        // var marker = new google.maps.Marker({
+        //     map: map,
+        //     position: results[0].geometry.location
+        // });
+      // } else {
+      //   alert('Geocode was not successful for the following reason: ' + status);
+      // }
+    });
+  }
 
 getLocation()

@@ -9,8 +9,12 @@ html, body {
     height: 100%;
     margin: 0;
     padding: 0;
+    
 }
 
+*{
+    font-family: Helvetica;
+}
 input {
     color: black;
     padding-left: 4px;
@@ -19,6 +23,10 @@ input {
 li, a {
     text-decoration: none;
     list-style: none;
+}
+li, a:hover{
+    text-decoration: none;
+    color: white;
 }
 
 a {
@@ -41,8 +49,6 @@ label {
     text-transform: capitalize;
 }
 
-#login,
-#signup,
 .logout {
     margin-top: 6px;
     padding: 8px;
@@ -51,7 +57,6 @@ label {
     text-align: left;
     display: inline-block;
     float: left;
-    border: 1px solid #fff;
 }
 
 .navbar-brand {
@@ -112,3 +117,41 @@ label {
 .tipbox{
     width: 100%;
 }
+#login{
+    padding-left: .5em;
+    display : inline;
+
+}
+#signup{
+    margin-left : -.5em;
+    
+    display: inline;
+}
+.glyphicon{
+    cursor: pointer;
+    text-align: center;
+    border: 1px solid white;
+    border-radius: 20px;
+    margin-top: .5em;
+    margin-left: .5em;
+    width: 120px;
+    padding: .5em 0em;
+}
+
+li.glyphicon:hover{
+    background-color: rgb(221, 132, 132);
+}
+
+.userBtns{
+    width : 400px;
+    
+}
+.heading{
+    position: relative;
+    left: 0px;
+    padding: 0px;
+}
+.navbar-brand{
+    margin-bottom: .8em;
+}
+

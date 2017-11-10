@@ -1,13 +1,13 @@
 html(lang="en")
     head
-        title Awesomeo Tipsssss
-        
+        title Awesome Tips
+        meta(name="viewport" content="width=device-width, initial-scale=1")
         // BOOTSTRAP
         link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css', integrity='sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u', crossorigin='anonymous')
-        link(rel='stylesheet', href='/bootstrap.css')
+        link(rel='stylesheet', href='/styles/bootstrap.css')
+
         // CUSTOM CSS
-        
-        link(rel='stylesheet' href='style.css')
+        link(rel='stylesheet' href='styles/style.css')
         
         // Latest compiled and minified JavaScript
         script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js')
@@ -17,41 +17,25 @@ html(lang="en")
         script(src='/scripts/layout.js')
 
     body
-        nav.navbar.navbar-expand-lg.navbar-dark.bg-primary
-            div.container
-                if (!currentUser)
-                    form#userAuthForm.text-right
-                        div.row
-                            .col-xs-12
-                                .col-xs-2.col-xs-offset-1
-                                    ul.text-left
-                                        li#login.glyphicon.glyphicon-log-in Login
-                                        li#signUp.glyphicon.glyphicon-check Signup
-                                .col-xs-4.col-xs-offset-1
-                                    a(href="/").navbar-brand.nav-item  Awesomeo Tips
-                                .col-xs-4
-                                    label.text-left Username:
-                                        input.nav-item#username(type="text" name="username" placeholder="Username")
-                                    label.text-left password:
-                                        input.nav-item#password(type="password" name="password" placeholder="Password")
+        .container-fluid
+            nav.navbar.bg-primary.col-xs-12
+                a(href="/").navbar-brand.col-xs-12.col-md-6 Awesome Tips
+                ul.userBtns
+                    if (!currentUser)
+                            
+                                a(href="/login")
+                                    li.glyphicon.glyphicon-log-in
+                                        #login Login
+                                a(href="sign-up")
+                                    li.glyphicon.glyphicon-check 
+                                        #signup Signup
+                                    
+                    else
+                        ul
+                            a.nav-item(href="/user/" + currentUser.username)=currentUser.username
+                            p#userId(hidden)=currentUser.id
 
-                else
-                    div.userAuthForm
-                        div.row
-                            .col-xs-12
-                                .col-xs-2
-                                    ul.text-left
-                                        a.nav-item(href="/user/" + currentUser.username)=currentUser.username
-                                .col-xs-4.col-xs-offset-1
-                                    a(href="/").navbar-brand.nav-item  Awesomeo Tips
-                                .col-xs-4.col-xs-offset-1
-                                    ul
-                                        a.logout.nav-item.glyphicon.glyphicon-log-in(href='/logout') Logout
-                    //div.text-right
-                    //    a(href="/").navbar-brand Awesome Tips
-                    //    ul.navbar-nav.mr-auto
-                    //        li
-                    //            a(href="/user/"+currentUser.username)=currentUser.username
-                    //        li
-                    //            a.glyphicon.glyphicon-log-in(href='/logout') Logout
-        block body
+                        ul
+                            a.logout.nav-item.glyphicon.glyphicon-log-out(href='/logout') Logout
+
+            block body
