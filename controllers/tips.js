@@ -45,6 +45,8 @@ module.exports = function (app) {
             tip.save({}).then( () => {
               res.redirect('/')
             });
+        }).catch(function (err) {
+            console.log(err)
         });
     });
 
