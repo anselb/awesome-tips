@@ -6,18 +6,18 @@ block content
 
         div(id="map").hidden-sm
         #tips
-          .container-fluid
-            .row
+          div.container-fluid
+            div.row
                 if (currentUser)
-                  .col-xs-12
+                  div.col-xs-12
                         legend New Tip
-                        .form-group
+                        div.form-group
                             label(for='tip-body') Tip
                             textarea#tip-content.form-control(name='body', placeholder="What's your tip?")
-                        .form-group
+                        div.form-group
                             label(for='tip-address') Address of Location ("Leave Empty to use your Current Location")
                             input#tip-address.form-control(type='text', name='address' placeholder='1547 Mission St, San Francisco, CA 94103')
-                        .text-right
+                        div.text-right
                             button#tip-submit.btn.btn-primary Submit Tip
                 div.tipbox
                     h2 Tips

@@ -35,10 +35,8 @@ app.get('*', function (req, res, next) {
 
 
 app.get('/', function (req, res) {
-
-  models.Tip.findAll({include: models.User}).then((tips) => {
+  models.Tip.findAll({include: models.User, order: [['createdAt', 'DESC']] }).then((tips) => {
     res.render('index', {currentUser: req.user, tips: tips});
-
   })
 });
 
@@ -48,11 +46,12 @@ app.get('/profile', function (req, res) {
   })
 });
 
-app.get('/login', (req, res) => {
-  res.render('login')
+app.get('/login', (req, res, next) => {
+  console.log('logging in');
+  res.render('login');
 });
 
-app.get('/sign-up', (req, res) => {
+app.get('/sign-up', (req, res, next) => {
   res.render('sign-up');
 });
 

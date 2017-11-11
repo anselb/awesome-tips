@@ -6,7 +6,6 @@ module.exports = function (app) {
     //GET all tip locations for map markers
     app.get('/tips', function(req,res) {
         TipModel.findAll({
-
         }).then((tips) => {
             res.send(tips);
         })
@@ -32,7 +31,7 @@ module.exports = function (app) {
         })
     }); 
 
-    // SUCCESSFULLY POSTS TO DB // (DONE 11/01)
+
     //POST create new tips
     app.post('/tips', function (req, res) {
         TipModel.create({
@@ -43,6 +42,7 @@ module.exports = function (app) {
             address : req.body.address
         }).then( (tip) => {
             tip.save({}).then( () => {
+              req.locals.successes = 'Tip saved successfully';
               res.redirect('/')
             });
         }).catch(function (err) {
@@ -58,8 +58,6 @@ module.exports = function (app) {
         })
     });
 
-
-    //Votes
 
     //Get Vote Count of Tip
     app.get('/tips/:id/votes', function(req,res){
