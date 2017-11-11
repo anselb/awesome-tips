@@ -43,9 +43,7 @@ module.exports = function (app) {
             UserId: req.user.id,
             address : req.body.address
         }).then( (tip) => {
-          console.log(tip);
             tip.save({}).then( () => {
-              req.locals.successes = 'Tip saved successfully';
               res.redirect('/')
             });
         }).catch(function (err) {
