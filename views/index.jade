@@ -26,28 +26,28 @@ block content
             div.tipbox
                 // div.tipsContainer
                 each tip, i in tips
-                    // .tip
-                    div.col-md-6.col-xs-6
-                        small  #{i + 1}.
-                        em #{tip.createdAt} //
-                        small by: #{tip.User.username} // VOTE COUNT:
-                        small.tip-vote-count #{tip.vote}
-                        p // #{tip.body}
+                    div.tip
+                        div.col-md-8.col-xs-6
+                            small  #{i + 1}.
+                            em #{tip.createdAt} //
+                            small by: #{tip.User.username} // VOTE COUNT:
+                            small.tip-vote-count #{tip.vote}
+                            p // #{tip.body}
 
-                        p.tip-id(hidden)= tip.id
+                            p.tip-id(hidden)=tip.id
 
-                    div.col-md-4.col-md-offset-2.col-xs-6.vote-content
-                        if (currentUser)
-                            form.col-md-4.col-xs-4.voteup
-                                button.glyphicon.glyphicon-thumbs-up.btn-outline-success.vote(type="Submit")
+                        div.col-md-4.col-md-offset-2.col-xs-6.vote-content
+                            if (currentUser)
+                                form.col-md-4.col-xs-4.voteup
+                                    button.glyphicon.glyphicon-thumbs-up.btn-outline-success.vote(type="Submit")
 
-                            form.col-md-4.col-xs-4.vote.votedown
-                                button.glyphicon.glyphicon-thumbs-down.btn-outline-danger.vote(type="Submit")
+                                form.col-md-4.col-xs-4.vote.votedown
+                                    button.glyphicon.glyphicon-thumbs-down.btn-outline-danger.vote(type="Submit")
 
-                             // DISPLAY ONLY WHEN USER IS LOGGED IN
-                            if (currentUser.id == tip.UserId)
-                                form.col-md-4.col-xs-4.tip-delete
-                                    button.glyphicon.glyphicon-trash.btn-outline-dark.delete(type="Submit")
+                                 // DISPLAY ONLY WHEN USER IS LOGGED IN
+                                if (currentUser.id == tip.UserId)
+                                    form.col-md-4.col-xs-4.tip-delete
+                                        button.glyphicon.glyphicon-trash.btn-outline-dark.delete(type="Submit")
 
         // div.hidden-sm
         // MAP HERE TO KEEP ON RIGHT SIDE

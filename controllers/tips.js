@@ -34,6 +34,8 @@ module.exports = function (app) {
 
     //POST create new tips
     app.post('/tips', function (req, res) {
+      // TODO :: ADD VALIDATION, CHECK FORM IN NOT EMPTY
+
         TipModel.create({
             body : req.body.tipContent,
             longitude : req.body.tipLng,
@@ -41,6 +43,7 @@ module.exports = function (app) {
             UserId: req.user.id,
             address : req.body.address
         }).then( (tip) => {
+          console.log(tip);
             tip.save({}).then( () => {
               req.locals.successes = 'Tip saved successfully';
               res.redirect('/')
