@@ -13,14 +13,14 @@ block content
             // DISPLAY FORM ONLY WHEN USER IS LOGGED IN
             if (currentUser)
                 form.tip-form-content
-                    div.form-group
+                    div.form-group#tip-submit
                         h2(for='tip-body') Tip
                         textarea#tip-content.form-control(name='body', placeholder="What's your tip?")
                     div.form-group
                         h2(for='tip-address') Address of Location ("Leave Empty to use your Current Location")
                         input#tip-address.form-control(type='text', name='address' placeholder='1547 Mission St, San Francisco, CA 94103')
                     div.text-right
-                        button#tip-submit.btn.btn-primary Submit Tip
+                        button.btn.btn-primary Submit Tip
 
             // ALWAYS DISPLAY TIPS
             div.tipbox
