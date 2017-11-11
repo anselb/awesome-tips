@@ -1,6 +1,9 @@
 extends layout
-block head
-block body
+
+block content
+    div.container-fluid
+    if (dangers.length !== 0)
+        div.alert.alert-danger #{dangers}
 
     form(action="/login" method="POST")
         input#username(type="text" name="username" placeholder="Username")

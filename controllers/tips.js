@@ -121,8 +121,10 @@ module.exports = function (app) {
     //DELETE tips
     app.delete('/tips/:id', function (req, res) {
         TipModel.findById(req.params.id).then((tip) => {
-            tip.destroy();
-            res.send();
+            tip.destroy(function(result) {
+              console.log(result);
+              res.send();
+            });
         })
     })
 
