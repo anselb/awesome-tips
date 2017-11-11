@@ -6,11 +6,14 @@ block content
 
         div(id="map").hidden-sm
         #tips
-          div.container-fluid
-            div.row
+            div.container-fluid
+                div.row
+                // DISPLAY LOGIN OR REGISTER WHEN NOT LOGGED IN
+                if (!currentUser)
+                    div.col-xs-12 Login or register to add a tip
+                // DISPLAY FORM WHEN USER IS LOGGED IN
                 if (currentUser)
-                  div.col-xs-12
-                        legend New Tip
+                    form.col-xs-12
                         div.form-group
                             label(for='tip-body') Tip
                             textarea#tip-content.form-control(name='body', placeholder="What's your tip?")
@@ -24,28 +27,28 @@ block content
                     br
                     div.row
                         div.col-xs-12
-                          .tipsContainer
-                            each tip, i in tips
-                              .tip
-                                p.col-xs-9
-                                    small  #{i+1}. <em>#{tip.createdAt}</em> <small class="tip-vote-count">#{tip.vote}</small>
-                                    if (currentUser)
-                                      form.voteup
-                                          .text-right.col-xs-1
-                                              button.glyphicon.glyphicon-thumbs-up.btn-outline-success(type="Submit")
+                            .tipsContainer
+                                each tip, i in tips
+                                    .tip
+                                        p.col-xs-9
+                                            small  #{i + 1}. <em>#{tip.createdAt}</em> <small class="tip-vote-count">#{tip.vote}</small>
+                                            if (currentUser)
+                                                form.voteup
+                                                    .text-right.col-xs-1
+                                                        button.glyphicon.glyphicon-thumbs-up.btn-outline-success(type="Submit")
 
-                                      form.votedown
-                                          .text-right.col-xs-1
-                                              button.glyphicon.glyphicon-thumbs-down.btn-outline-danger(type="Submit")
-                                      if (currentUser.id == tip.UserId)          
-                                        form.tip-delete
-                                            .text-right.col-xs-1
-                                                button.glyphicon.glyphicon-trash.btn-outline-dark(type="Submit")
-                                p.col-xs-9
-                                    | #{tip.body}
-                                    | by: #{tip.User.username}
-                                    
-                                p.tip-id(hidden)= tip.id
+                                                form.votedown
+                                                    .text-right.col-xs-1
+                                                        button.glyphicon.glyphicon-thumbs-down.btn-outline-danger(type="Submit")
+                                                if (currentUser.id == tip.UserId)
+                                                    form.tip-delete
+                                                        .text-right.col-xs-1
+                                                            button.glyphicon.glyphicon-trash.btn-outline-dark(type="Submit")
+                                        p.col-xs-9
+                                            | #{tip.body}
+                                            | by: #{tip.User.username}
+
+                                        p.tip-id(hidden)= tip.id
 
     script(src='markerclusterer.js')
     script(src='js-map.js')

@@ -30,7 +30,8 @@ li, a:hover{
 }
 
 a {
-    color: #fff
+    color: #fff;
+    z-index: 1;
 }
 
 .container {

@@ -55,7 +55,6 @@ app.get('/sign-up', (req, res, next) => {
   res.render('sign-up');
 });
 
-
 // ROUTES
 require('./controllers/passport')(passport);            // required for passport
 require('./controllers/auth')(app, passport);           //  Routes for authentication
