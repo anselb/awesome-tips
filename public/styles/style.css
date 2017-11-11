@@ -46,6 +46,9 @@ a {
     margin: 0;
 }
 
+/* ===============   TIPBOX STYLES    */
+
+
 
 /*.container {*/
     /*!*margin-left: 8%;*!*/
@@ -136,9 +139,9 @@ label {
     width: 100%;
 }
 
-.tipbox{
-    width: 100%;
-}
+/*.tipbox{*/
+    /*width: 100%;*/
+/*}*/
 /*#login{*/
     /*padding-left: .5em;*/
     /*display : inline;*/
