@@ -10,9 +10,9 @@ nav.navbar.bg-primary.row
                 //li.glyphicon.glyphicon-check#signup
                 //    a(href="/sign-up") Signup
 
-                li.glyphicon.glyphicon-log-in
+                li.glyphicon.glyphicon-log-in.auth
                     a(href="/login") Login
-                li.glyphicon.glyphicon-check
+                li.glyphicon.glyphicon-check.auth
                     a(href="/sign-up") Signup
 
         else
@@ -22,5 +22,5 @@ nav.navbar.bg-primary.row
                     p#userId(hidden)=currentUser.id
 
                 li
-                    a.logout.nav-item.glyphicon.glyphicon-log-out(href="/logout") Logout
+                    a.logout.nav-item.glyphicon.glyphicon-log-out.auth(href="/logout") Logout
                     //a.logout.nav-item.glyphicon.glyphicon-log-out(href="/user/")#logout Logout

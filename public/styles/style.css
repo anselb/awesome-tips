@@ -48,7 +48,61 @@ a {
 
 /* ===============   TIPBOX STYLES    */
 
+label {
+    text-transform: capitalize;
+}
 
+.tip-form {
+    padding: 18px 60px;
+}
+
+.tipbox *,
+.tip-form-content * {
+    font-size: 1.1em;
+}
+
+.tip-form-content {
+    padding-bottom: 27px;
+    border-bottom: 2px solid #000;
+}
+
+.tip-form-content > div > h2 {
+    font-style: italic;
+    font-size: 1.5em;
+}
+
+.btn-primary {
+    width: 180px;
+    height: 34px;
+}
+
+
+/* ===============   VOTE-CONTENT STYLES    */
+
+.glyphicon.vote,
+.glyphicon.delete {
+    width: 34px;
+    height: 34px;
+    border: 1px solid rgba(0, 0, 0, .2);
+    border-radius: 50%;
+}
+
+/* ===============   GLYPHICON STYLES    */
+
+.glyphicon.auth {
+    cursor: pointer;
+    text-align: center;
+    border: 1px solid white;
+    border-radius: 20px;
+    margin-top: .5em;
+    margin-left: .5em;
+    width: 120px;
+    padding: .5em 0em;
+}
+
+li.glyphicon.auth:hover{
+    background-color: rgb(221, 132, 132);
+}
 
 /*.container {*/
     /*!*margin-left: 8%;*!*/
@@ -62,9 +116,6 @@ a {
     margin-left: 12px;
 }
 
-label {
-    text-transform: capitalize;
-}
 
 /*.logout {*/
     /*margin-top: 6px;*/
@@ -153,20 +204,6 @@ label {
     /*display: inline;*/
 /*}*/
 
-.glyphicon{
-    cursor: pointer;
-    text-align: center;
-    border: 1px solid white;
-    border-radius: 20px;
-    margin-top: .5em;
-    margin-left: .5em;
-    width: 120px;
-    padding: .5em 0em;
-}
-
-li.glyphicon:hover{
-    background-color: rgb(221, 132, 132);
-}
 
 /*.userBtns{*/
     /*width : 400px;*/
