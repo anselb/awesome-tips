@@ -1,15 +1,13 @@
 /* Always set the map height explicitly to define the size of the div
  * element that contains the map. */
-#map {
-    height: 70%;
-    width: 70%;
-}
+
 /* Optional: Makes the sample page fill the window. */
 html, body {
     height: 100%;
+    max-width: 100vw;
     margin: 0;
     padding: 0;
-    
+    box-sizing: border-box;
 }
 
 *{
@@ -34,10 +32,25 @@ a {
     z-index: 1;
 }
 
-.container {
-    margin-left: 8%;
-    padding: 0;
+/* ===============   PAGE CONTAINER STYLES    */
+
+.row {
+    max-width: 100vw;
+    margin: 0;
 }
+
+
+/* ===============   NAVBAR STYLES    */
+
+.navbar {
+    margin: 0;
+}
+
+
+/*.container {*/
+    /*!*margin-left: 8%;*!*/
+    /*padding: 0;*/
+/*}*/
 
 
 #username,
@@ -50,15 +63,15 @@ label {
     text-transform: capitalize;
 }
 
-.logout {
-    margin-top: 6px;
-    padding: 8px;
-    width: 95%;
+/*.logout {*/
+    /*margin-top: 6px;*/
+    /*padding: 8px;*/
+    /*width: 95%;*/
 
-    text-align: left;
-    display: inline-block;
-    float: left;
-}
+    /*text-align: left;*/
+    /*display: inline-block;*/
+    /*float: left;*/
+/*}*/
 
 .navbar-brand {
     margin-left: 18px;
@@ -78,33 +91,41 @@ label {
     /*display: block;*/
 /*}*/
 
-#userAuthForm > input,
-#userAuthForm > li,
-#userAuthForm > ll > a,
-.userAuthForm > input,
-#userAuthForm > li,
-#userAuthForm > ll > a {
-    display: inline-block;
-    margin: 8px;
+/*#userAuthForm > input,*/
+/*#userAuthForm > li,*/
+/*#userAuthForm > ll > a,*/
+/*.userAuthForm > input,*/
+/*#userAuthForm > li,*/
+/*#userAuthForm > ll > a {*/
+    /*display: inline-block;*/
+    /*margin: 8px;*/
+/*}*/
+
+/*#tips{*/
+    /*overflow-y: scroll;*/
+    /*width: 30%;*/
+    /*height: 90%;*/
+    /*background-color: #efefef;*/
+    /*float: left;*/
+    /*margin-top: -20px;*/
+/*}*/
+
+/*#wrapper{*/
+    /*width: 100vw;*/
+/*}*/
+
+#map{
+    /*margin-top: -20px;*/
+    width: 70%;
+    float: right;
+    height: 90%;
 }
 
-#tips{
-    overflow-y: scroll;
-    width:30%;
-    height: 90%;
-    background-color: #efefef;
-    float: right;
-    margin-top: -20px;
-}
-#wrapper{
-    width: 100Vw;
-}
-#map{
-    margin-top: -20px;
-    width: 70%;
-    float: left;
-    height: 90%;
-}
+/*#map {*/
+    /*height: 70%;*/
+    /*width: 70%;*/
+/*}*/
+
 @media (max-width: 990px){
     #tips{
         width: 100%;
@@ -118,16 +139,17 @@ label {
 .tipbox{
     width: 100%;
 }
-#login{
-    padding-left: .5em;
-    display : inline;
+/*#login{*/
+    /*padding-left: .5em;*/
+    /*display : inline;*/
 
-}
-#signup{
-    margin-left : -.5em;
-    
-    display: inline;
-}
+/*}*/
+/*#signup{*/
+    /*margin-left : -.5em;*/
+    /**/
+    /*display: inline;*/
+/*}*/
+
 .glyphicon{
     cursor: pointer;
     text-align: center;
@@ -143,15 +165,16 @@ li.glyphicon:hover{
     background-color: rgb(221, 132, 132);
 }
 
-.userBtns{
-    width : 400px;
-    
-}
+/*.userBtns{*/
+    /*width : 400px;*/
+/*}*/
+
 .heading{
     position: relative;
     left: 0px;
     padding: 0px;
 }
+
 .navbar-brand{
     margin-bottom: .8em;
 }

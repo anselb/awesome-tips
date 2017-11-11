@@ -1,24 +1,26 @@
-nav.navbar.bg-primary.col-xs-12
-    a(href="/").navbar-brand.col-xs-12.col-md-6 Awesome Tips
-    ul.userBtns
-    if (!currentUser)
+nav.navbar.bg-primary.row
+    div.col-xs-12.col-md-9.text-left
+        a.navbar-brand(href="/") Awesome Tips
+    div.col-xs-12.col-md-3.text-right
+        if (!currentUser)
+            ul.userBtns
+                // REMOVED ID'S USED BY JQUERY ROUTES, CAUSING SOME ROUTE ISSUES
+                //li.glyphicon.glyphicon-log-in#login
+                //    a(href="/login") Login
+                //li.glyphicon.glyphicon-check#signup
+                //    a(href="/sign-up") Signup
 
-        // REMOVED ID'S USED BY JQUERY ROUTES, CAUSING SOME ROUTE ISSUES
-        //li.glyphicon.glyphicon-log-in#login
-        //    a(href="/login") Login
-        //li.glyphicon.glyphicon-check#signup
-        //    a(href="/sign-up") Signup
+                li.glyphicon.glyphicon-log-in
+                    a(href="/login") Login
+                li.glyphicon.glyphicon-check
+                    a(href="/sign-up") Signup
 
-        li.glyphicon.glyphicon-log-in
-            a(href="/login") Login
-        li.glyphicon.glyphicon-check
-            a(href="/sign-up") Signup
+        else
+            ul.userBtns
+                li
+                    a.nav-item(href="/user/" + currentUser.username)=currentUser.username
+                    p#userId(hidden)=currentUser.id
 
-    else
-        li
-            a.nav-item(href="/user/" + currentUser.username)=currentUser.username
-            p#userId(hidden)=currentUser.id
-
-        li
-            a.logout.nav-item.glyphicon.glyphicon-log-out(href="/logout") Logout
-            //a.logout.nav-item.glyphicon.glyphicon-log-out(href="/user/")#logout Logout
+                li
+                    a.logout.nav-item.glyphicon.glyphicon-log-out(href="/logout") Logout
+                    //a.logout.nav-item.glyphicon.glyphicon-log-out(href="/user/")#logout Logout
