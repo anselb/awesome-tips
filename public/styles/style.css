@@ -1,9 +1,6 @@
 /* Always set the map height explicitly to define the size of the div
  * element that contains the map. */
-#map {
-    height: 70%;
-    width: 70%;
-}
+
 /* Optional: Makes the sample page fill the window. */
 html, body {
     height: 100%;
@@ -13,6 +10,7 @@ html, body {
 }
 
 *{
+    font-size: 20px;
     font-family: Helvetica;
 }
 input {
@@ -89,34 +87,23 @@ label {
 
 #tips{
     overflow-y: scroll;
-    width:30%;
-    height: 90%;
+ 
+
     background-color: #efefef;
-    float: right;
+
     margin-top: -20px;
 }
-#wrapper{
-    width: 100Vw;
-}
+
 #map{
     margin-top: -20px;
-    width: 70%;
     float: left;
-    height: 90%;
+    height: 400px;
 }
-@media (max-width: 990px){
-    #tips{
-        width: 100%;
-    }
 
-}
 .navbar{
     width: 100%;
 }
 
-.tipbox{
-    width: 100%;
-}
 #login{
     padding-left: .5em;
     display : inline;
@@ -143,7 +130,7 @@ li.glyphicon:hover{
 }
 
 .userBtns{
-    width : 400px;
+    width : 300px;
     
 }
 .heading{
@@ -153,5 +140,17 @@ li.glyphicon:hover{
 }
 .navbar-brand{
     margin-bottom: .8em;
+}
+
+.tipbtn{
+    width: 50px;
+}
+
+.tipbox{
+    padding-top: 1em;
+    padding-bottom: 1em;
+}
+.tip{
+    border-top: 1px solid white;
 }
 

@@ -1,48 +1,50 @@
 extends layout
 block body
-    #wrapper
-        div(id="map").hidden-sm
-        #tips
-          .container-fluid
-            .row
-                if (currentUser)
-                  .col-xs-12
-                        legend New Tip
-                        .form-group
-                            label(for='tip-body') Tip
-                            textarea#tip-content.form-control(name='body', placeholder="What's your tip?")
-                        .form-group
-                            label(for='tip-address') Address of Location ("Leave Empty to use your Current Location")
-                            input#tip-address.form-control(type='text', name='address' placeholder='1547 Mission St, San Francisco, CA 94103')
-                        .text-right
-                            button#tip-submit.btn.btn-primary Submit Tip
-                div.tipbox
-                    h2 Tips
-                    br
-                    div.row
-                        div.col-xs-12
-                          .tipsContainer
-                            each tip, i in tips
-                              .tip
-                                p.col-xs-9
-                                    small  #{i+1}. <em>#{tip.createdAt}</em> <small class="tip-vote-count">#{tip.vote}</small>
-                                    if (currentUser)
-                                      form.voteup
-                                          .text-right.col-xs-1
-                                              button.glyphicon.glyphicon-thumbs-up.btn-outline-success(type="Submit")
 
-                                      form.votedown
-                                          .text-right.col-xs-1
-                                              button.glyphicon.glyphicon-thumbs-down.btn-outline-danger(type="Submit")
-                                      if (currentUser.id == tip.UserId)          
-                                        form.tip-delete
-                                            .text-right.col-xs-1
-                                                button.glyphicon.glyphicon-trash.btn-outline-dark(type="Submit")
-                                p.col-xs-9
-                                    | #{tip.body}
-                                    | by: #{tip.User.username}
-                                    
-                                p.tip-id(hidden)= tip.id
+    div(id="map").hidden-xs.col-sm-3
+    #tips.col-xs-12.col-md-9
+        .row.col-xs-12.col-md-9
+            if (currentUser)
+                
+                legend New Tip
+                .row.col-xs-12.col-md-9
+                    .form-group
+                        label(for='tip-body') Tip
+                        textarea#tip-content.form-control(name='body', placeholder="What's your tip?")
+                .row.col-xs-12.col-md-9
+                    .form-group
+                        label(for='tip-address') Address of Location ("Leave Empty to use your Current Location")
+                        input#tip-address.form-control(type='text', name='address' placeholder='1547 Mission St, San Francisco, CA 94103')
+                .row.col-xs-12.col-md-9
+                    .text-right
+                        
+                        button#tip-submit.btn.btn-primary Submit Tip
+        
+            
+        
+            .tipbox.col-xs-11.col-md-9.offset-2
+                .tipsContainer
+                    each tip, i in tips
+                        .row.tip
+                            .row
+                                small  #{i+1}. <em>#{tip.createdAt}</em> <small class="tip-vote-count">#{tip.vote}</small>
+                                if (currentUser)
+                                    form.voteup
+                                        .text-right.col-xs-2
+                                            button.tipbtn.glyphicon.glyphicon-thumbs-up.btn-outline-success(type="Submit")
+
+                                    form.votedown
+                                        .text-right.col-xs-2
+                                            button.tipbtn.glyphicon.glyphicon-thumbs-down.btn-outline-danger(type="Submit")
+                                    if (currentUser.id == tip.UserId)          
+                                    form.tip-delete
+                                        .text-right.col-xs-2
+                                            button.tipbtn.glyphicon.glyphicon-trash.btn-outline-dark(type="Submit")
+                            .row
+                                | #{tip.body}
+                                | by: #{tip.User.username}
+                            
+                        p.tip-id(hidden)= tip.id
 
     script(src='markerclusterer.js')
     script(src='js-map.js')
