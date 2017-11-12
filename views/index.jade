@@ -1,48 +1,56 @@
 extends layout
-block body
-    #wrapper
-        div(id="map").hidden-sm
-        #tips
-          .container-fluid
-            .row
-                if (currentUser)
-                  .col-xs-12
-                        legend New Tip
-                        .form-group
-                            label(for='tip-body') Tip
-                            textarea#tip-content.form-control(name='body', placeholder="What's your tip?")
-                        .form-group
-                            label(for='tip-address') Address of Location ("Leave Empty to use your Current Location")
-                            input#tip-address.form-control(type='text', name='address' placeholder='1547 Mission St, San Francisco, CA 94103')
-                        .text-right
-                            button#tip-submit.btn.btn-primary Submit Tip
-                div.tipbox
-                    h2 Tips
-                    br
-                    div.row
-                        div.col-xs-12
-                          .tipsContainer
-                            each tip, i in tips
-                              .tip
-                                p.col-xs-9
-                                    small  #{i+1}. <em>#{tip.createdAt}</em> <small class="tip-vote-count">#{tip.vote}</small>
-                                    if (currentUser)
-                                      form.voteup
-                                          .text-right.col-xs-1
-                                              button.glyphicon.glyphicon-thumbs-up.btn-outline-success(type="Submit")
 
-                                      form.votedown
-                                          .text-right.col-xs-1
-                                              button.glyphicon.glyphicon-thumbs-down.btn-outline-danger(type="Submit")
-                                      if (currentUser.id == tip.UserId)          
-                                        form.tip-delete
-                                            .text-right.col-xs-1
-                                                button.glyphicon.glyphicon-trash.btn-outline-dark(type="Submit")
-                                p.col-xs-9
-                                    | #{tip.body}
-                                    | by: #{tip.User.username}
-                                    
-                                p.tip-id(hidden)= tip.id
+// USE BLOCK CONTENT TO RENDER TEMPLATE
+block content
+    div.row
+
+        // KEEP CONTENT TO THE LEFT
+        // DISPLAY LOGIN OR REGISTER WHEN NOT LOGGED IN
+        if (!currentUser)
+            div.col-xs-12 Login or register to add a tip
+
+        div.col-xs-12.col-md-8.tip-form
+            // DISPLAY FORM ONLY WHEN USER IS LOGGED IN
+            if (currentUser)
+                form.tip-form-content
+                    div.form-group#tip-submit
+                        h2(for='tip-body') Tip
+                        textarea#tip-content.form-control(name='body', placeholder="What's your tip?")
+                    div.form-group
+                        h2(for='tip-address') Address of Location ("Leave Empty to use your Current Location")
+                        input#tip-address.form-control(type='text', name='address' placeholder='1547 Mission St, San Francisco, CA 94103')
+                    div.text-right
+                        button.btn.btn-primary Submit Tip
+
+            // ALWAYS DISPLAY TIPS
+            div.tipbox
+                // div.tipsContainer
+                each tip, i in tips
+                    div.col-md-8.col-xs-6.tip
+                        small  #{i + 1}.
+                        em #{tip.createdAt} //
+                        small by: #{tip.User.username}
+                        p // #{tip.body}
+
+                    div.col-md-4.col-md-offset-2.col-xs-6.vote-content
+                        p.tip-id(hidden)=tip.id
+
+                        small.tip-vote-count #{tip.vote}
+                        if (currentUser)
+                            form.voteup.col-md-4.col-xs-4
+                                button.glyphicon.glyphicon-thumbs-up.btn-outline-success.vote(type="Submit")
+
+                            form.votedown.col-md-4.col-xs-4.vote
+                                button.glyphicon.glyphicon-thumbs-down.btn-outline-danger.vote(type="Submit")
+
+                             // DISPLAY ONLY WHEN USER IS LOGGED IN
+                            if (currentUser.id == tip.UserId)
+                                form.tip-delete.col-md-4.col-xs-4
+                                    button.glyphicon.glyphicon-trash.btn-outline-dark.delete(type="Submit")
+
+        // div.hidden-sm
+        // MAP HERE TO KEEP ON RIGHT SIDE
+        div#map.col-xs-12.col-md-4
 
     script(src='markerclusterer.js')
     script(src='js-map.js')

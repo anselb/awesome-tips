@@ -6,7 +6,6 @@ module.exports = function (app) {
     //GET all tip locations for map markers
     app.get('/tips', function(req,res) {
         TipModel.findAll({
-
         }).then((tips) => {
             res.send(tips);
         })
@@ -32,9 +31,11 @@ module.exports = function (app) {
         })
     }); 
 
-    // SUCCESSFULLY POSTS TO DB // (DONE 11/01)
+
     //POST create new tips
     app.post('/tips', function (req, res) {
+      // TODO :: ADD VALIDATION, CHECK FORM IN NOT EMPTY
+
         TipModel.create({
             body : req.body.tipContent,
             longitude : req.body.tipLng,
@@ -58,8 +59,6 @@ module.exports = function (app) {
         })
     });
 
-
-    //Votes
 
     //Get Vote Count of Tip
     app.get('/tips/:id/votes', function(req,res){
@@ -121,8 +120,10 @@ module.exports = function (app) {
     //DELETE tips
     app.delete('/tips/:id', function (req, res) {
         TipModel.findById(req.params.id).then((tip) => {
-            tip.destroy();
-            res.send();
+            tip.destroy(function(result) {
+              console.log(result);
+              res.send();
+            });
         })
     })
 

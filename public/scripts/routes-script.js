@@ -39,21 +39,25 @@ $(document).ready(function(){
 
   $('.voteup').submit(function(e){
     e.preventDefault();
-    var tipId = $(this).parent('.tip').children('.tip-id').text();
+    // var tipId = $(this).parent('.tip').children('.tip-id').text();
+    var tipId = $(this).parent('.vote-content').children('.tip-id').text();
+    // console.log(tipId);
     var thisForm = $(this);
     $.post('/tips/'+tipId+'/voteup', function(voteCount){
-      thisForm.parent('.tip').find('.tip-vote-count').text(voteCount);
+      thisForm.parent('.vote-content').children('.tip-vote-count').text(voteCount);
     });
   });
 
   $('.votedown').submit(function(e){
     e.preventDefault();
-    var tipId = $(this).parent('.tip').children('.tip-id').text();
+    var tipId = $(this).parent('.vote-content').children('.tip-id').text();
+    // console.log(tipId);
     var thisForm = $(this);
     $.post('/tips/'+tipId+'/votedown', function(voteCount){
-      thisForm.parent('.tip').find('.tip-vote-count').text(voteCount);
+      console.log(thisForm.parent('.tip').children('.tip-vote-count'));
+      thisForm.parent('.vote-content').children('.tip-vote-count').text(voteCount);
     })
-  })
+  });
 
   $('.tip-delete').submit(function(e){
     e.preventDefault();

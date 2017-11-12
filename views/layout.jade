@@ -8,34 +8,18 @@ html(lang="en")
 
         // CUSTOM CSS
         link(rel='stylesheet' href='styles/style.css')
-        
+
         // Latest compiled and minified JavaScript
         script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js')
         script(src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js', integrity='sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa', crossorigin='anonymous')
         script(src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js")
-        
-        script(src='/scripts/layout.js')
 
-    body
-        .container-fluid
-            nav.navbar.bg-primary.col-xs-12
-                a(href="/").navbar-brand.col-xs-12.col-md-6 Awesome Tips
-                ul.userBtns
-                    if (!currentUser)
-                            
-                                a(href="/login")
-                                    li.glyphicon.glyphicon-log-in
-                                        #login Login
-                                a(href="sign-up")
-                                    li.glyphicon.glyphicon-check 
-                                        #signup Signup
-                                    
-                    else
-                        ul
-                            a.nav-item(href="/user/" + currentUser.username)=currentUser.username
-                            p#userId(hidden)=currentUser.id
+        script(src='/scripts/routes-script.js')
 
-                        ul
-                            a.logout.nav-item.glyphicon.glyphicon-log-out(href='/logout') Logout
+    body.container-fluid
 
-            block body
+        // NAVBAR PARTIAL
+        include navbar
+
+        block content
+
