@@ -8,6 +8,7 @@ html, body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    position: fixed;
 }
 
 *{
@@ -69,7 +70,19 @@ label {
     /*overflow-y: scroll;*/
 /*}*/
 
-.tip-form {
+.tipbox-wrapper {
+    position: relative;
+    height: 100%;
+}
+
+.tipbox {
+    position: relative;
+    overflow-y: scroll;
+    height: 100%;
+}
+
+.tip-form,
+.tip-add-message {
     padding: 18px 60px;
 }
 
@@ -127,11 +140,46 @@ li.glyphicon.auth:hover{
 /*}*/
 
 
-#username,
-#password {
-    margin-top: 6px;
-    margin-left: 12px;
+/*#username,*/
+/*#password {*/
+    /*margin-top: 6px;*/
+    /*margin-left: 12px;*/
+/*}*/
+
+/* ===============   LOGIN STYLES    */
+
+.auth-title {
+    font-size: 2.5em;
 }
+
+.auth-form {
+    margin-top: 27px;
+    border: 1px solid rgba(0,0,0,.2);
+    padding: 40px 16px 40px 16px;
+}
+
+.form-control {
+    font-size: 1.7em;
+    margin: 16px 0;
+    height: 44px;
+}
+
+.btn {
+    font-size: 1.7em;
+    width: 28%;
+    height: 44px;
+}
+
+/* ===============   ERROR MESSAGE STYLES    */
+
+.alert-danger,
+.alert-success,
+.alert-info {
+    font-size: 2.4em;
+    height: 44px;
+}
+
+
 
 
 /*.logout {*/

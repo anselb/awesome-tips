@@ -47,7 +47,6 @@ app.get('/profile', function (req, res) {
 });
 
 app.get('/login', (req, res, next) => {
-  console.log('logging in');
   res.render('login');
 });
 
