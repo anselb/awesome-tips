@@ -48,7 +48,7 @@ a {
 
 .row {
     max-width: 100vw;
-    margin: 0;
+    margin: 0 0 12px 0;
 }
 
 
@@ -56,6 +56,11 @@ a {
 
 .navbar {
     margin: 0;
+}
+
+.nav-user {
+    padding-right: 27px;
+    padding-left: 8px;
 }
 
 /* ===============   TIPBOX STYLES    */
@@ -116,6 +121,14 @@ label {
     border: 1px solid rgba(0, 0, 0, .2);
     border-radius: 50%;
 }
+
+/*.tip-vote-count:before {*/
+    /*content: '(';*/
+/*}*/
+
+/*.tip-vote-count:after {*/
+    /*content: ')';*/
+/*}*/
 
 /* ===============   GLYPHICON STYLES    */
 
@@ -179,7 +192,17 @@ li.glyphicon.auth:hover{
     height: 44px;
 }
 
+.tip-add-message {
+    position: fixed;
+    text-align: center;
+    display: inline-block;
 
+    color: #fff;
+    font-size: 2.4em;
+    top:3%;
+    left: 40%;
+    z-index: 99;
+}
 
 
 /*.logout {*/
