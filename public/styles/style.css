@@ -69,6 +69,10 @@ input#tip-address{
 
 #tip-submit{
     font-size: inherit;
+    border-radius: 15px;
+    -moz-outline-style: none;
+    outline-style: none;
+    outline: 0;
 }
 
 .navbar-brand {
@@ -110,17 +114,19 @@ input#tip-address{
 #login{
     padding-left: .5em;
     display : inline;
+    color: white;
 
 }
 #signup{
     margin-left : -.5em;
-    
     display: inline;
+    color: white;
 }
 
 .buttontxt{
     display: inline-block;
     margin-left: -15px;
+    color: white;
 }
 
 .glyphicon{
@@ -178,6 +184,15 @@ input#tip-address{
     width: 100%;
 }
 
-textarea{
-   
+.tip-body{
+    width: 100%;
+}
+.tip-user{
+    display:inline-block;
+}
+.tip{
+    padding-top: 1em;
+}
+.tip-vote-count{
+    line-height: 70px;
 }
