@@ -188,7 +188,13 @@ input#tip-address{
     width: 100%;
 }
 .tip-user{
-    display:inline-block;
+    color: #777;
+    font-size: .8em;
+    width: 100%;
+}
+.tip-date{
+    color: #777;
+    font-size: .8em;
 }
 .tip{
     padding-top: 1em;
