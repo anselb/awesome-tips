@@ -12,6 +12,7 @@ html, body {
 *{
     font-size: 20px;
     font-family: Helvetica;
+    color: #333;
 }
 input {
     color: black;
@@ -27,8 +28,23 @@ li, a:hover{
     color: white;
 }
 
+li.glyphicon:hover{
+    background-color: rgb(221, 132, 132);
+}
+
+.logout:hover{
+    background-color: rgb(221, 132, 132);
+
+}
+
+button:focus{
+    -moz-outline-style: none;
+    outline-style: none;
+    outline: 0;
+}
 a {
-    color: #fff
+    color: #fff;
+
 }
 
 .container {
@@ -47,14 +63,12 @@ label {
     text-transform: capitalize;
 }
 
-.logout {
-    margin-top: 6px;
-    padding: 8px;
-    width: 95%;
+input#tip-address{
+    font-size: inherit;
+}
 
-    text-align: left;
-    display: inline-block;
-    float: left;
+#tip-submit{
+    font-size: inherit;
 }
 
 .navbar-brand {
@@ -63,17 +77,6 @@ label {
     font-size: 2.2em;
     font-family: "News Cycle", "Arial Narrow Bold", sans-serif;
 }
-
-/*body{*/
-    /*display: flex;*/
-    /*flex-direction: column;*/
-    /*align-items: left;*/
-/*}*/
-
-/*#userAuthForm {*/
-    /*width: 100vw;*/
-    /*display: block;*/
-/*}*/
 
 #userAuthForm > input,
 #userAuthForm > li,
@@ -114,6 +117,12 @@ label {
     
     display: inline;
 }
+
+.buttontxt{
+    display: inline-block;
+    margin-left: -15px;
+}
+
 .glyphicon{
     cursor: pointer;
     text-align: center;
@@ -123,11 +132,12 @@ label {
     margin-left: .5em;
     width: 120px;
     padding: .5em 0em;
+    -webkit-transition: background-color .5s; /* Safari */
+    transition: background-color .5s;
+
 }
 
-li.glyphicon:hover{
-    background-color: rgb(221, 132, 132);
-}
+
 
 .userBtns{
     width : 300px;
@@ -154,3 +164,20 @@ li.glyphicon:hover{
     border-top: 1px solid white;
 }
 
+.hint{
+    font-size: .6em;
+}
+
+#tip-content{
+    width: 100%;
+    height: 200px;
+    font-size: 1em;
+}
+
+.form-group{
+    width: 100%;
+}
+
+textarea{
+   
+}

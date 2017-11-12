@@ -3,26 +3,27 @@ block body
 
     div(id="map").hidden-xs.col-sm-3
     #tips.col-xs-12.col-md-9
-        .row.col-xs-12.col-md-9
+        .row.col-xs-12
             if (currentUser)
                 
-                legend New Tip
-                .row.col-xs-12.col-md-9
+                .row.col-xs-12
                     .form-group
                         label(for='tip-body') Tip
                         textarea#tip-content.form-control(name='body', placeholder="What's your tip?")
-                .row.col-xs-12.col-md-9
+                .row.col-xs-12
                     .form-group
-                        label(for='tip-address') Address of Location ("Leave Empty to use your Current Location")
+                        label(for='tip-address') Address of Location 
+                        br
+                        span.hint Leave Empty to use your Current Location
                         input#tip-address.form-control(type='text', name='address' placeholder='1547 Mission St, San Francisco, CA 94103')
-                .row.col-xs-12.col-md-9
+                .row.col-xs-12
                     .text-right
                         
                         button#tip-submit.btn.btn-primary Submit Tip
         
             
-        
-            .tipbox.col-xs-11.col-md-9.offset-2
+        .row.col-cs-12.col-md-12
+            .tipbox.col-xs-12.col-md-9.offset-2
                 .tipsContainer
                     each tip, i in tips
                         .row.tip
