@@ -34,7 +34,7 @@ block content
                             div.tip-user by: #{tip.User.username}
                             small.tip-date #{tip.createdAt} 
                             p.tip-id(hidden)=tip.id                       
-                            .tip-vote-count #{tip.vote}
+                            .tip-vote-count Votes: #{tip.vote}
                             if (currentUser)
                                 form.voteup
                                     .text-right.col-xs-2
