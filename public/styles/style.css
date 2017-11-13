@@ -8,7 +8,6 @@ html, body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    position: fixed;
 }
 
 *{
@@ -71,18 +70,18 @@ label {
 
 /* ======   GET THE TEXT TO COMMENTS TO SCROLL INDEPENDENTLY */
 /*.tipbox {*/
-    /*position: fixed;*/
     /*overflow-y: scroll;*/
 /*}*/
 
-.tipbox-wrapper {
-    position: relative;
-    height: 100%;
-}
 
-.tipbox {
-    position: relative;
-    overflow-y: scroll;
+/*.tipbox {*/
+/*position: relative;*/
+/*overflow-y: scroll;*/
+/*height: 100%;*/
+/*}*/
+
+.tipbox-wrapper {
+    /*position: relative;*/
     height: 100%;
 }
 
@@ -104,11 +103,6 @@ label {
 .tip-form-content > div > h2 {
     font-style: italic;
     font-size: 1.5em;
-}
-
-.btn-primary {
-    width: 180px;
-    height: 34px;
 }
 
 
@@ -178,7 +172,7 @@ li.glyphicon.auth:hover{
 }
 
 .btn {
-    font-size: 1.7em;
+    font-size: 1.4em;
     width: 28%;
     height: 44px;
 }
