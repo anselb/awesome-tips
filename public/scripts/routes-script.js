@@ -19,7 +19,7 @@ $(document).ready(function(){
   });
 
   $('#tip-submit').click(function(){
-    if($('.tip-body').val().length > 1){
+    if($('#tip-content').val().length > 0){
       var lat = 0;
       var lng = 0;
       var address = $('#tip-address').val();

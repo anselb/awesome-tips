@@ -22,11 +22,11 @@ module.exports = {
             },
             longitude: {
                 type: Sequelize.FLOAT,
-                unique: true
+                unique: false
             },
             latitude: {
                 type: Sequelize.FLOAT,
-                unique: true
+                unique: false
             },
             vote: {
                 type: Sequelize.INTEGER,
