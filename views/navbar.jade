@@ -23,7 +23,7 @@ nav.navbar.bg-primary.row
             ul.userBtns
                 li
                     span Welcome:
-                    a.nav-item.nav-user(href="/user/" + currentUser.username)=currentUser.username
+                    a.nav-item.nav-user(href="#" + currentUser.username)=currentUser.username
                     span#userId(hidden)=currentUser.id
                     a.logout.nav-item.glyphicon.glyphicon-log-out.auth(href="/logout") 
                         span.userbtns Logout
