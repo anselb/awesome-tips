@@ -19,25 +19,24 @@ $(document).ready(function(){
   });
 
   $('#tip-submit').click(function(){
-    var lat = 0;
-    var lng = 0;
-    var address = $('#tip-address').val();
-    if(address.length < 1 ){
-      navigator.geolocation.getCurrentPosition(function(position) {
-        lat = position.coords.latitude;
-        lng = position.coords.longitude;
-        console.log('test1')
+    if($('.tip-body').val().length > 1){
+      var lat = 0;
+      var lng = 0;
+      var address = $('#tip-address').val();
+      if(address.length < 1 ){
+        navigator.geolocation.getCurrentPosition(function(position) {
+          lat = position.coords.latitude;
+          lng = position.coords.longitude;
+          $.post('/tips', {tipContent : $('#tip-content').val(), tipLat : lat, tipLng : lng, address : address}, function(){
+            location.reload();
+          });
+        })
+      }else{
         $.post('/tips', {tipContent : $('#tip-content').val(), tipLat : lat, tipLng : lng, address : address}, function(){
           location.reload();
         });
-      })
-    }else{
-        console.log('test2')
-      $.post('/tips', {tipContent : $('#tip-content').val(), tipLat : lat, tipLng : lng, address : address}, function(){
-        location.reload();
-      });
+      }
     }
-    console.log('test')
   });
 
   $('.voteup').submit(function(e){
