@@ -42,7 +42,14 @@ module.exports = function (passport) {
     function (req, username, password, done) {
       // asynchronous
       // User.findOne wont fire unless data is sent back
+
       process.nextTick(function () {
+
+        console.log(username, password);
+        if (username == '' || password == '') {
+          return done(null, false, req.flash('danger', 'You can\'t leave username or password empty'));
+        }
+
         // find a user whose email is the same as the forms email
         // we are checking to see if the user trying to login already exists
         User.find({
@@ -90,6 +97,11 @@ module.exports = function (passport) {
     function (req, username, password, done) { // callback with email and password from our form
       // find a user whose email is the same as the forms email
       // we are checking to see if the user trying to login already exists
+      console.log(username);
+      if (username == '' || password == '') {
+        return done(null, false, req.flash('danger', 'You have to enter a username and/or password'));
+      } // req.flash is the way to set flashdata using connect-flash
+
       User.find({
         where: {username: username}
       }).then(user => {

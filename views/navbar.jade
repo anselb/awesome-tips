@@ -18,9 +18,8 @@ nav.navbar.bg-primary.row
         else
             ul.userBtns
                 li
-                    a.nav-item(href="/user/" + currentUser.username)=currentUser.username
-                    p#userId(hidden)=currentUser.id
-
-                li
+                    span Welcome:
+                    a.nav-item.nav-user(href="/user/" + currentUser.username)=currentUser.username
+                    span#userId(hidden)=currentUser.id
                     a.logout.nav-item.glyphicon.glyphicon-log-out.auth(href="/logout") Logout
                     //a.logout.nav-item.glyphicon.glyphicon-log-out(href="/user/")#logout Logout
