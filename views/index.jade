@@ -26,26 +26,25 @@ block content
             div.tipbox
                 // div.tipsContainer
                 each tip, i in tips
-                    .col-xs-9.tip
-                        small #{i+1}.
-                        em #{tip.createdAt}
-                        small.tip-vote-count #{tip.vote}
-                        p.tip-id(hidden)=tip.id
-                        //- small.tip-vote-count #{tip.vote}
-                        if (currentUser)
-                            form.voteup.col-md-4.col-xs-4
-                                button.glyphicon.glyphicon-thumbs-up.btn-outline-success.vote(type="Submit")
+                    .row.tip
+                            
+                            div.tip-body #{tip.body}
+                            div.tip-user by: #{tip.User.username}
+                            small.tip-date #{tip.createdAt} 
+                            p.tip-id(hidden)=tip.id                       
+                            .tip-vote-count #{tip.vote}
+                            if (currentUser)
+                                form.voteup
+                                    .text-right.col-xs-2
+                                        button.tipbtn.glyphicon.glyphicon-thumbs-up.btn-outline-success(type="Submit")
 
-                            form.votedown.col-md-4.col-xs-4.vote
-                                button.glyphicon.glyphicon-thumbs-down.btn-outline-danger.vote(type="Submit")
-
-                             // DISPLAY ONLY WHEN USER IS LOGGED IN
-                            if (currentUser.id == tip.UserId)
-                                form.tip-delete.col-md-4.col-xs-4
-                                    button.glyphicon.glyphicon-trash.btn-outline-dark.delete(type="Submit")
-                        .col-xs-9
-                            | #{tip.body}
-                            | by: #{tip.User.username}
+                                form.votedown
+                                    .text-right.col-xs-2
+                                        button.tipbtn.glyphicon.glyphicon-thumbs-down.btn-outline-danger(type="Submit")
+                                if (currentUser.id == tip.UserId)          
+                                form.tip-delete
+                                    .text-right.col-xs-2
+                                        button.tipbtn.glyphicon.glyphicon-trash.btn-outline-dark(type="Submit")
 
         // div.hidden-sm
         // MAP HERE TO KEEP ON RIGHT SIDE

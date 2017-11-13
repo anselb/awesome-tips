@@ -12,6 +12,7 @@ html, body {
 
 *{
     font-family: Helvetica;
+
 }
 input {
     color: black;
@@ -69,16 +70,7 @@ label {
 }
 
 /* ======   GET THE TEXT TO COMMENTS TO SCROLL INDEPENDENTLY */
-/*.tipbox {*/
-    /*overflow-y: scroll;*/
-/*}*/
 
-
-/*.tipbox {*/
-/*position: relative;*/
-/*overflow-y: scroll;*/
-/*height: 100%;*/
-/*}*/
 
 .tipbox-wrapper {
     /*position: relative;*/
@@ -116,13 +108,6 @@ label {
     border-radius: 50%;
 }
 
-/*.tip-vote-count:before {*/
-    /*content: '(';*/
-/*}*/
-
-/*.tip-vote-count:after {*/
-    /*content: ')';*/
-/*}*/
 
 /* ===============   GLYPHICON STYLES    */
 
@@ -141,17 +126,7 @@ li.glyphicon.auth:hover{
     background-color: rgb(221, 132, 132);
 }
 
-/*.container {*/
-    /*!*margin-left: 8%;*!*/
-    /*padding: 0;*/
-/*}*/
 
-
-/*#username,*/
-/*#password {*/
-    /*margin-top: 6px;*/
-    /*margin-left: 12px;*/
-/*}*/
 
 /* ===============   LOGIN STYLES    */
 
@@ -199,15 +174,6 @@ li.glyphicon.auth:hover{
 }
 
 
-/*.logout {*/
-    /*margin-top: 6px;*/
-    /*padding: 8px;*/
-    /*width: 95%;*/
-
-    /*text-align: left;*/
-    /*display: inline-block;*/
-    /*float: left;*/
-/*}*/
 
 .navbar-brand {
     margin-left: 18px;
@@ -215,46 +181,6 @@ li.glyphicon.auth:hover{
     font-size: 2.2em;
     font-family: "News Cycle", "Arial Narrow Bold", sans-serif;
 }
-
-/*body{*/
-    /*display: flex;*/
-    /*flex-direction: column;*/
-    /*align-items: left;*/
-/*}*/
-
-/*#userAuthForm {*/
-    /*width: 100vw;*/
-    /*display: block;*/
-/*}*/
-
-/*#userAuthForm > input,*/
-/*#userAuthForm > li,*/
-/*#userAuthForm > ll > a,*/
-/*.userAuthForm > input,*/
-/*#userAuthForm > li,*/
-/*#userAuthForm > ll > a {*/
-    /*display: inline-block;*/
-    /*margin: 8px;*/
-/*}*/
-
-/*#tips{*/
-    /*overflow-y: scroll;*/
-    /*width: 30%;*/
-    /*height: 90%;*/
-    /*background-color: #efefef;*/
-    /*float: left;*/
-    /*margin-top: -20px;*/
-/*}*/
-
-/*#wrapper{*/
-    /*width: 100vw;*/
-/*}*/
-
-
-/*#map {*/
-    /*height: 70%;*/
-    /*width: 70%;*/
-/*}*/
 
 @media (max-width: 990px){
     #tips{
@@ -266,25 +192,6 @@ li.glyphicon.auth:hover{
     width: 100%;
 }
 
-/*.tipbox{*/
-    /*width: 100%;*/
-/*}*/
-/*#login{*/
-    /*padding-left: .5em;*/
-    /*display : inline;*/
-
-/*}*/
-/*#signup{*/
-    /*margin-left : -.5em;*/
-    /**/
-    /*display: inline;*/
-/*}*/
-
-
-/*.userBtns{*/
-    /*width : 400px;*/
-/*}*/
-
 .heading{
     position: relative;
     left: 0px;
@@ -295,3 +202,21 @@ li.glyphicon.auth:hover{
     margin-bottom: .8em;
 }
 
+.tip-body, .tip-user, .tip-date{
+    width: 100%;
+}
+
+.tip-body{
+    font-size: 2em;
+}
+.tip-user, .tip-date{
+    font-size: 1.3em;
+    color: #999;
+    margin-left: 25px;
+}
+
+.tip{
+    border-bottom: 2px solid #efefef;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}

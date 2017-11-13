@@ -43,7 +43,7 @@ $(document).ready(function(){
   $('.voteup').submit(function(e){
     e.preventDefault();
     var tipId = $(this).parent('.tip').children('.tip-id').text();
-    // console.log(tipId);
+    console.log(tipId);
     var thisForm = $(this);
     $.post('/tips/'+tipId+'/voteup', function(voteCount){
       thisForm.parent('.tip').children('.tip-vote-count').text(voteCount);
@@ -53,10 +53,10 @@ $(document).ready(function(){
   $('.votedown').submit(function(e){
     e.preventDefault();
     var tipId = $(this).parent('.tip').children('.tip-id').text();
-    // console.log(tipId);
+     console.log(tipId);
     var thisForm = $(this);
     $.post('/tips/'+tipId+'/votedown', function(voteCount){
-      console.log(thisForm.parent('.tip').children('.tip-vote-count'));
+      //console.log(thisForm.parent('.tip').children('.tip-vote-count'));
       thisForm.parent('.tip').children('.tip-vote-count').text(voteCount);
     })
   });
