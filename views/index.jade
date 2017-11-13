@@ -17,7 +17,9 @@ block content
                         h2(for='tip-body') Tip
                         textarea#tip-content.form-control(name='body', placeholder="What's your tip?")
                     div.form-group
-                        h2(for='tip-address') Address of Location ("Leave Empty to use your Current Location")
+                        h2(for='tip-address') Address of Location
+                        br
+                        span.hint Leave Empty to use your Current Location
                         input#tip-address.form-control(type='text', name='address' placeholder='1547 Mission St, San Francisco, CA 94103')
                     div.text-right
                         button(type='button')#tip-submit.btn.btn-primary Submit Tip

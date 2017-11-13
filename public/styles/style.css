@@ -220,3 +220,6 @@ li.glyphicon.auth:hover{
     padding-top: 20px;
     padding-bottom: 20px;
 }
+.hint{
+    font-size: 1em;
+}

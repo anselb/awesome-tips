@@ -1,6 +1,5 @@
 var express = require('express');
 var app = express();
-//var port = process.env.PORT || 3000;
 var passport = require('passport');
 var session = require('express-session');
 var flash = require('connect-flash');
