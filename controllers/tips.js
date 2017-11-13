@@ -35,20 +35,17 @@ module.exports = function (app) {
     //POST create new tips
     app.post('/tips', function (req, res) {
       // TODO :: ADD VALIDATION, CHECK FORM IN NOT EMPTY
-
         TipModel.create({
             body : req.body.tipContent,
             longitude : req.body.tipLng,
             latitude : req.body.tipLat,
             UserId: req.user.id,
             address : req.body.address
-        }).then( (tip) => {
-            tip.save({}).then( () => {
-              res.redirect('/')
-            });
         }).catch(function (err) {
             console.log(err)
         });
+
+        res.redirect('/')
     });
 
     //PUT edit tips
@@ -122,8 +119,8 @@ module.exports = function (app) {
         TipModel.findById(req.params.id).then((tip) => {
             tip.destroy(function(result) {
               console.log(result);
-              res.send();
             });
+            res.send();
         })
     })
 

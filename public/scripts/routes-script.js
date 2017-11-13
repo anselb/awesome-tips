@@ -26,36 +26,38 @@ $(document).ready(function(){
       navigator.geolocation.getCurrentPosition(function(position) {
         lat = position.coords.latitude;
         lng = position.coords.longitude;
+        console.log('test1')
         $.post('/tips', {tipContent : $('#tip-content').val(), tipLat : lat, tipLng : lng, address : address}, function(){
           location.reload();
         });
       })
     }else{
+        console.log('test2')
       $.post('/tips', {tipContent : $('#tip-content').val(), tipLat : lat, tipLng : lng, address : address}, function(){
         location.reload();
       });
     }
+    console.log('test')
   });
 
   $('.voteup').submit(function(e){
     e.preventDefault();
-    // var tipId = $(this).parent('.tip').children('.tip-id').text();
-    var tipId = $(this).parent('.vote-content').children('.tip-id').text();
+    var tipId = $(this).parent('.tip').children('.tip-id').text();
     // console.log(tipId);
     var thisForm = $(this);
     $.post('/tips/'+tipId+'/voteup', function(voteCount){
-      thisForm.parent('.vote-content').children('.tip-vote-count').text(voteCount);
+      thisForm.parent('.tip').children('.tip-vote-count').text(voteCount);
     });
   });
 
   $('.votedown').submit(function(e){
     e.preventDefault();
-    var tipId = $(this).parent('.vote-content').children('.tip-id').text();
+    var tipId = $(this).parent('.tip').children('.tip-id').text();
     // console.log(tipId);
     var thisForm = $(this);
     $.post('/tips/'+tipId+'/votedown', function(voteCount){
       console.log(thisForm.parent('.tip').children('.tip-vote-count'));
-      thisForm.parent('.vote-content').children('.tip-vote-count').text(voteCount);
+      thisForm.parent('.tip').children('.tip-vote-count').text(voteCount);
     })
   });
 
@@ -70,5 +72,5 @@ $(document).ready(function(){
         thisForm.parent('.tip').remove();
       })
     });
-    
+
 });
