@@ -5,3 +5,8 @@ Awesome Tips is a program that allows users to easily create tips and reviews fo
 
 Awesome Tips also allow you to quickly fire off tips and reviews to let those around you know what's up with as few barriers as possible.
 
+## Installation
+Awesome Tips requires these environment variables to be set
+ * SESSION_SECRET : This is the secret key for your server
+ * MAP_KEY : This is the google maps api key
+
